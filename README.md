@@ -1,7 +1,7 @@
 [vue]: https://vuejs.org/
 [vue-image]: https://img.shields.io/badge/Powered%20By-Vue-4fc08d.svg?style=flat-square
 [element-ui]: http://element.eleme.io
-[element-ui-image]: https://img.shields.io/badge/Powered%20By-element-ui-409eff.svg?style=flat-square
+[element-ui-image]: https://img.shields.io/badge/Powered%20By-elementui-409eff.svg?style=flat-square
 
 # blog-admin
 
@@ -68,4 +68,4 @@ npm run lint
 
 
 ### CHANGELOG
-参见[CHANGLOG.md](https://github.com/Chance722/blog-admin/blob/master/CHANGELOG.md)
+参见 [CHANGLOG.md](https://github.com/Chance722/blog-admin/blob/master/CHANGELOG.md)
