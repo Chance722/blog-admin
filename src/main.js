@@ -18,9 +18,9 @@ import '@/assets/font/blog-font/iconfont.css'
 Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
 Vue.use(VueProgressBar, {
-  color: '#ff637e',
+  color: '#409eff',
   failedColor: '#874b4b',
-  thickness: '1px',
+  thickness: '2px',
   transition: {
     speed: '0.2s',
     opacity: '0.6s',

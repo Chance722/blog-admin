@@ -51,7 +51,7 @@
               </el-upload>
             </template>
             <template v-else>
-              <img :src="scope.row.thumb" class="avatar">
+              <img v-show="scope.row.thumb" :src="scope.row.thumb" class="avatar">
             </template>
           </template>
         </el-table-column>

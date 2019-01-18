@@ -2,12 +2,15 @@
   <section class="settings">
     <el-tabs type="border-card" v-model="activeName">
       <el-tab-pane name="baseInfo">
-        <span slot="label"><i class="iconfont icon-rili"></i> 基本信息</span>
+        <span slot="label"><i class="iconfont icon-rili" /> 基本信息</span>
         <base-info :settingInfo="settingInfo"></base-info>
       </el-tab-pane>
       <el-tab-pane name="userInfo">
-        <span slot="label"><i class="iconfont icon-fensi"></i> 用户信息</span>
+        <span slot="label"><i class="iconfont icon-fensi" /> 用户信息</span>
         <user-info :settingInfo="settingInfo"></user-info>
+      </el-tab-pane>
+      <el-tab-pane name="pwdInfo">
+        <span slot="label"><i class="iconfont icon-caozuo" /> 修改密码</span>
       </el-tab-pane>
     </el-tabs>
   </section>
