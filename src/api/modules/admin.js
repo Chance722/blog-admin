@@ -13,20 +13,22 @@ export default {
    * @param {string} name required
    * @param {string} nickname required
    * @param {string} signature required
-   * @param {string} old_pwd required
-   * @param {string} new_pwd required
    * @param {string} avator required
    * @return {object} { id, name, token, avator }
    */
-  saveUserInfo ({ name, nickname, signature, oldPwd, newPwd, pwd, imageUrl }) {
+  saveUserInfo ({ name, nickname, signature, imageUrl }) {
     return axios.post('/api/admin/saveUserInfo', {
       name,
       nickname,
       signature,
-      old_pwd: oldPwd,
-      new_pwd: newPwd,
-      pwd,
       avator: imageUrl })
+  },
+  saveUserPwd ({ newPwd, oldPwd, pwd }) {
+    return axios.post('/api/admin/saveUserPwd', {
+      new_pwd: newPwd,
+      old_pwd: oldPwd,
+      pwd
+    })
   },
   saveBaseInfo ({ blogTitle, pageTitle, keywords, blogAddress, blogDesc, email, icpNumbers }) {
     return axios.post('/api/admin/saveBaseInfo', {

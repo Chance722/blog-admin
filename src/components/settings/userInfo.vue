@@ -28,18 +28,6 @@
       <label class="item_name">个性签名</label>
       <el-input class="box-search-input" size="medium" v-model="signature" placeholder="个性签名"></el-input>
     </div>
-    <div class="box-item">
-      <label class="item_name">原密码</label>
-      <el-input type="password" class="box-search-input" size="medium" v-model="old_pwd" placeholder="原密码"></el-input>
-    </div>
-    <div class="box-item">
-      <label class="item_name">新密码</label>
-      <el-input type="password" class="box-search-input" size="medium" v-model="new_pwd" placeholder="新密码"></el-input>
-    </div>
-    <div class="box-item">
-      <label class="item_name">确认密码</label>
-      <el-input type="password" class="box-search-input" size="medium" v-model="pwd" placeholder="确认密码"></el-input>
-    </div>
     <div class="box-item mt-30">
         <el-button size="medium" @click="onSubmit()" type="primary" icon="iconfont icon-baocun"> 保存</el-button>
     </div>
@@ -57,9 +45,6 @@ export default {
       name: '',
       nickname: '',
       signature: '',
-      old_pwd: '',
-      new_pwd: '',
-      pwd: '',
       imageUrl: '',
       percent: 0,
       qiniu: {
@@ -118,24 +103,14 @@ export default {
         this.name,
         this.nickname,
         this.signature,
-        this.old_pwd,
-        this.new_pwd,
-        this.pwd,
         this.imageUrl)) {
         this.$message.error('参数不能为空')
-        return false
-      }
-      if (this.new_pwd !== this.pwd) {
-        this.$message.error('两次密码不一致')
         return false
       }
       api.saveUserInfo({
         name: this.name,
         nickname: this.nickname,
         signature: this.signature,
-        oldPwd: this.old_pwd,
-        newPwd: this.new_pwd,
-        pwd: this.pwd,
         imageUrl: this.imageUrl
       }).then(res => {
         if (res.code === 200 && res.success) {

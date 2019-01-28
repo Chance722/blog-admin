@@ -11,6 +11,7 @@
       </el-tab-pane>
       <el-tab-pane name="pwdInfo">
         <span slot="label"><i class="iconfont icon-caozuo" /> 修改密码</span>
+        <pwd-info />
       </el-tab-pane>
     </el-tabs>
   </section>
@@ -20,10 +21,12 @@
 import api from '@/api'
 import baseInfo from '@/components/settings/baseInfo'
 import userInfo from '@/components/settings/userInfo'
+import pwdInfo from '@/components/settings/pwdInfo'
 export default {
   components: {
     baseInfo,
-    userInfo
+    userInfo,
+    pwdInfo
   },
   data () {
     return {
