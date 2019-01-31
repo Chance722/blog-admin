@@ -106,10 +106,11 @@ const UTILS = {
 
   /**
    * 格式化时间戳
-   * @param {string} 时间戳字符串
+   * @param {string} dateStr 时间戳字符串
+   * @param {boolean} isShort 是否只显示年月日
    * @return {object} 时间信息
    */
-  formatDate (dateStr) {
+  formatDate (dateStr, isShort) {
     let time = new Date(Number(dateStr))
     let y = time.getFullYear() // 年
     let m = time.getMonth() + 1 // 月
@@ -122,15 +123,8 @@ const UTILS = {
     mm = mm >= 10 ? mm : '0' + mm
     let s = time.getSeconds() // 秒
     s = s >= 10 ? s : '0' + s
-    return `${y}-${m}-${d} ${h}:${mm}:${s}`
-    // return {
-    //   year: y,
-    //   month: m,
-    //   day: d,
-    //   hour: h,
-    //   minute: mm,
-    //   second: s
-    // }
+    const extraStr = isShort ? '' : ` ${h}:${mm}:${s}`
+    return `${y}-${m}-${d}${extraStr}`
   },
   /**
    * 判断参数是否为空

@@ -5,6 +5,7 @@ import article from './modules/article'
 import comment from './modules/comment'
 import album from './modules/album'
 import user from './modules/user'
+import statistics from './modules/statistics'
 
 export default {
   ...admin,
@@ -13,5 +14,6 @@ export default {
   ...article,
   ...comment,
   ...album,
-  ...user
+  ...user,
+  ...statistics
 }

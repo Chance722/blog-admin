@@ -6,3 +6,11 @@ export const QINIU_DOMAIN = `${PROTOCOL}//plh0ed9u2.bkt.clouddn.com/`
 export const BLOGADMIN_ACCESS_TOKEN = 'BLOGADMIN_ACCESS_TOKEN'
 // 用户信息字段
 export const BLOGADMIN_DATA = 'BLOGADMIN_DATA'
+
+export const DATE_STAT_TYPE = {
+  'RECENT_WEEK': 1,
+  'RECENT_MONTH': 2,
+  'RECENT_THREE_MONTH': 3,
+  'RECENT_HALF_YEAR': 4,
+  'RECENT_YEAR': 5
+}

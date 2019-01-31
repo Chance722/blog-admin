@@ -4,7 +4,7 @@
       <span>Chance722</span>
     </div>
     <div class="user-info">
-      <el-button type="warning" plain @click="logout">退出登陆</el-button>
+      <el-button type="warning" size="small" plain @click="logout">退出登陆</el-button>
       <div class="img">
         <img :src="avator" alt="">
       </div>

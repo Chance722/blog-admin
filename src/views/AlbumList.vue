@@ -66,15 +66,6 @@ export default {
     // }).then(res => {
     //   console.log(res)
     // })
-
-    // api.addPicture({
-    //   url: 'http://pjpumy8at.bkt.clouddn.com/14742160465531545236321302.jpg',
-    //   content: 'Nothing to say but pei.',
-    //   type: 1,
-    //   state: 1,
-    //   address: 'GZ',
-    //   weather: 1
-    // })
   }
 }
 </script>
