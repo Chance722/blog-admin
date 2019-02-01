@@ -3,11 +3,11 @@
     <div class="echarts_container">
       <div class="echarts_header">
         <p>
-          <label>{{ dateTitle }}</label>
-          <span class="blue">3</span>
+          <label>{{ commentOpts.dateTitle }}</label>
+          <span class="blue">{{ commentOpts.dateNums }}</span>
         </p>
         <p>
-          <label>{{ totalTitle }}</label>
+          <label>{{ commentOpts.totalTitle }}</label>
           <span class="orange">102</span>
         </p>
         <el-select class="date-select" v-model="value" size="small">
@@ -20,7 +20,7 @@
         </el-select>
         <i class="refresh-icon el-icon-refresh" />
       </div>
-      <v-chart :options="bar"/>
+      <v-chart :options="commentOpts.opts"/>
     </div>
   </section>
 </template>
@@ -32,7 +32,7 @@ import 'echarts/lib/chart/bar'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/title'
 import api from '@/api'
-import utils from '@/utils'
+// import utils from '@/utils'
 import { DATE_STAT_TYPE } from '@/config/const'
 export default {
   components: {
@@ -41,6 +41,8 @@ export default {
   data () {
     return {
       statisticsData: [],
+      xAxisData: [],
+      yAxisData: [],
       value: 1,
       options: [
         {
@@ -60,62 +62,70 @@ export default {
           value: 4
         }
       ],
-      dateTitle: '新增用户数：',
-      totalTitle: '总用户数：',
-      bar: {
-        xAxis: {
-          type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [{
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
-          type: 'line',
-          areaStyle: {}
-        }]
+      commentOpts: {
+        dateTitle: '新增评论数：',
+        totalTitle: '总评论数：',
+        dateNums: 0,
+        opts: {
+          tooltip: {
+            formatter: (params) => {
+              return `${this.xAxisData[params.dataIndex]}<br> 新增用户数：${params.data}`
+            }
+          },
+          xAxis: {
+            data: [],
+            axisLabel: {
+              interval: 0,
+              rotate: 45,
+              margin: 10,
+              textStyle: {
+                color: '#222'
+              }}
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [{
+            data: [],
+            type: 'line',
+            smooth: true,
+            areaStyle: {}
+          }]
+        }
       }
     }
   },
   computed: {
-    newUsers () {
-      // let users = this.statisticsData.length ? this.statisticsData.filter(item => item.name === 'NEW_USERS') : []
-      // let stamps = this.getAxisData('RECENT_WEEK')
-      // let xAxis = stamps.map(item => utils.formatDate(item, true))
-      // let yData = xAxis.map(item => {
-      //   let value = 0
-      //   // 如果没有统计数据 则均返回0
-      //   if (!users.length) return value
-      //   let beginStamp = new Date(`${item} 00:00:00`).getTime()
-      //   let endStamp = new Date(`${item} 23:59,59`).getTime()
-      //   users.filter(item =>)
-      // })
-
-      // return {
-      //   xAxis: {
-      //     type: 'category',
-      //     data: xAxis
-      //   },
-      //   yAxis: {
-      //     type: 'value'
-      //   },
-      //   series: [{
-      //     data: [820, 932, 901, 934, 1290, 1330, 1320],
-      //     type: 'line',
-      //     areaStyle: {}
-      //   }]
-      // }
+    commentsData () {
+      let ydata = this.getYaxisData('NEW_COMMENTS')
+      return {
+        yaxisData: ydata,
+        dateNums: ydata.reduce((a, b) => a + b)
+      }
     }
   },
   created () {
-    api.getDataByDate(DATE_STAT_TYPE['RECENT_MONTH']).then(res => {
-       if (res.code === 200 && res.data.length) {
-         this.statisticsData = res.data
-       }
+    api.getDataByDate(DATE_STAT_TYPE['RECENT_WEEK']).then(res => {
+      if (res.code === 200 && res.data.length) {
+        this.statisticsData = res.data
+        this.xAxisData = this.statisticsData.map(item => item.date)
+        this.yAxisData = this.statisticsData.map(item => item.list)
+        this.initChartsData()
+      }
     }).catch(err => this.$message.error(err.message))
   },
   methods: {
+    getYaxisData (type) {
+      let yaxisData = this.yAxisData.slice()
+      yaxisData.forEach(item => {
+        item.filter(citem => citem.name === type)
+      })
+      return yaxisData.map(item => item.length)
+    },
+    initChartsData () {
+      this.commentOpts.opts.series[0].data = this.commentsData.yaxisData
+      this.commentOpts.dateNums = this.commentsData.dateNums
+    }
   }
 }
 </script>
