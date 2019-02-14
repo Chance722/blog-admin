@@ -110,7 +110,7 @@ export default {
           } else {
             this.$message.error(res.message)
           }
-        }).catch(err => console.warn(err))
+        }).catch(err => this.$message.error(err.response.data.message))
       })
     },
     setPublishStatus (row) {
@@ -124,7 +124,7 @@ export default {
         } else {
           this.$message.error(res.message)
         }
-      }).catch(err => console.warn(err))
+      }).catch(err => this.$message.error(err.response.data.message))
     },
     setEditStatus (row) {
       api.updateArticle({
@@ -137,7 +137,7 @@ export default {
         } else {
           this.$message.error(res.message)
         }
-      }).catch(err => console.warn(err))
+      }).catch(err => this.$message.error(err.response.data.message))
     },
     handleCurrentChange (pageIndex) {
       this.refreshList(pageIndex)

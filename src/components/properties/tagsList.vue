@@ -141,7 +141,7 @@ export default {
           } else {
             this.$message.error(res.message)
           }
-        }).catch(err => console.warn(err))
+        }).catch(err => this.$message.error(err.response.data.message))
       })
     },
     saveTag (row) {
@@ -168,7 +168,7 @@ export default {
         } else {
           this.$message.error(res.message)
         }
-      }).catch(err => console.warn(err))
+      }).catch(err => this.$message.error(err.response.data.message))
     },
     updateTag (row) {
       api.updateTag({
@@ -186,7 +186,7 @@ export default {
         } else {
           this.$message.error(res.message)
         }
-      }).catch(err => console.warn(err))
+      }).catch(err => this.$message.error(err.response.data.message))
     },
     refreshList (pageIndex, isReset) {
       this.$eventhub.$emit('listTags', {

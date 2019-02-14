@@ -123,7 +123,7 @@ export default {
           } else {
             this.$message.error(res.message)
           }
-        }).catch(err => this.$message.error(err.message))
+        }).catch(err => this.$message.error(err.response.data.message))
       })
     },
     formatDate (str) {

@@ -139,7 +139,7 @@ export default {
           } else {
             this.$message.error(res.message)
           }
-        }).catch(err => console.warn(err))
+        }).catch(err => this.$message.error(err.response.data.message))
       })
     },
     saveType (row) {
@@ -166,7 +166,7 @@ export default {
         } else {
           this.$message.error(res.message)
         }
-      }).catch(err => console.warn(err))
+      }).catch(err => this.$message.error(err.response.data.message))
     },
     updateType (row) {
       api.updateType({
@@ -184,7 +184,7 @@ export default {
         } else {
           this.$message.error(res.message)
         }
-      }).catch(err => console.warn(err))
+      }).catch(err => this.$message.error(err.response.data.message))
     },
     refreshList (pageIndex, isReset) {
       this.$eventhub.$emit('listTypes', {

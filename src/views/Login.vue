@@ -54,7 +54,7 @@ export default {
           this.$message.error(res.message)
         }
       }).catch(err => {
-        console.warn(err)
+        this.$message.error(err.response.data.message)
       })
     }
   },
