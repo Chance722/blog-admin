@@ -1,15 +1,15 @@
 <template>
   <section class="settings">
     <el-tabs type="border-card" v-model="activeName">
-      <el-tab-pane name="baseInfo">
+      <el-tab-pane name="base">
         <span slot="label"><i class="iconfont icon-rili" /> 基本信息</span>
         <base-info :settingInfo="settingInfo"></base-info>
       </el-tab-pane>
-      <el-tab-pane name="userInfo">
+      <el-tab-pane name="user">
         <span slot="label"><i class="iconfont icon-fensi" /> 用户信息</span>
         <user-info :settingInfo="settingInfo"></user-info>
       </el-tab-pane>
-      <el-tab-pane name="pwdInfo">
+      <el-tab-pane name="pwd">
         <span slot="label"><i class="iconfont icon-caozuo" /> 修改密码</span>
         <pwd-info />
       </el-tab-pane>
@@ -30,7 +30,7 @@ export default {
   },
   data () {
     return {
-      activeName: 'baseInfo',
+      activeName: 'base',
       settingInfo: null
     }
   },

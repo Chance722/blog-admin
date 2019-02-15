@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import searchPanel from '@/components/articleManage/searchPanel'
-import searchList from '@/components/articleManage/searchList'
+import searchPanel from '@/components/article_manage/searchPanel'
+import searchList from '@/components/article_manage/searchList'
 import api from '@/api'
 export default {
   components: {

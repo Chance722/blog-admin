@@ -1,18 +1,18 @@
 <template>
   <section class="comment_list">
-    <search-panel></search-panel>
-    <search-list :tableData="tableData"></search-list>
+    <words-search-panel></words-search-panel>
+    <words-search-list :tableData="tableData"></words-search-list>
   </section>
 </template>
 
 <script>
-import searchPanel from '@/components/wordsManage/searchPanel'
-import searchList from '@/components/wordsManage/searchList'
+import wordsSearchPanel from '@/components/words_manage/wordsSearchPanel'
+import wordsSearchList from '@/components/words_manage/wordsSearchList'
 import api from '@/api'
 export default {
   components: {
-    searchPanel,
-    searchList
+    wordsSearchPanel,
+    wordsSearchList
   },
   data () {
     return {

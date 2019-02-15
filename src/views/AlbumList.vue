@@ -1,18 +1,18 @@
 <template>
   <section class="album_manage">
-    <search-panel></search-panel>
-    <search-list :tableData="tableData"></search-list>
+    <album-search-panel></album-search-panel>
+    <album-search-list :tableData="tableData"></album-search-list>
   </section>
 </template>
 
 <script>
-import searchPanel from '@/components/albumManage/searchPanel'
-import searchList from '@/components/albumManage/searchList'
+import albumSearchPanel from '@/components/album_manage/albumSearchPanel'
+import albumSearchList from '@/components/album_manage/albumSearchList'
 import api from '@/api'
 export default {
   components: {
-    searchPanel,
-    searchList
+    albumSearchPanel,
+    albumSearchList
   },
   data () {
     return {
