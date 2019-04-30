@@ -7,18 +7,18 @@ import {
   BLOGADMIN_TOKEN_TIME,
   EXPIRED_TIME
 } from '@/config/const'
-const Login = () => import('@/views/login')
+const Login = () => import('@/views/Login')
 const Homepage = () => import('@/views/homepage')
-const DashBoard = () => import('@/views/dashBoard')
-const ArticleList = () => import('@/views/articleList')
-const ArticlePublish = () => import('@/views/articlePublish')
-const ArticleCategorys = () => import('@/views/articleCategorys')
-const ArticleTags = () => import('@/views/articleTags')
-const MusicManage = () => import('@/views/musicManage')
-const WordsManage = () => import('@/views/wordsManage')
-const AlbumList = () => import('@/views/albumList')
-const AlbumPublish = () => import('@/views/albumPublish')
-const Settings = () => import('@/views/settings')
+const DashBoard = () => import('@/views/DashBoard')
+const ArticleList = () => import('@/views/ArticleList')
+const ArticlePublish = () => import('@/views/ArticlePublish')
+const ArticleCategorys = () => import('@/views/ArticleCategorys')
+const ArticleTags = () => import('@/views/ArticleTags')
+const MusicManage = () => import('@/views/MusicManage')
+const WordsManage = () => import('@/views/WordsManage')
+const AlbumList = () => import('@/views/AlbumList')
+const AlbumPublish = () => import('@/views/AlbumPublish')
+const Settings = () => import('@/views/Settings')
 const filterNames = ['Login']
 
 Vue.use(Router)
