@@ -5,6 +5,7 @@
 
 # blog-admin
 
+[![Build Status](https://travis-ci.org/Chance722/blog-admin.svg?branch=master)](https://travis-ci.org/Chance722/blog-admin)
 [![powered by vue][vue-image]][vue]
 [![powered by element-ui][element-ui-image]][element-ui]
 [![GitHub forks](https://img.shields.io/github/forks/Chance722/blog-admin.svg?style=flat-square)](https://github.com/Chance722/blog-admin/network/members)
