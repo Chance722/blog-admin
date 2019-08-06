@@ -2,6 +2,13 @@ const webpack = require('webpack')
 const path = require('path')
 
 module.exports = {
+  css: {
+    loaderOptions: {
+      less: {
+        javascriptEnabled: true
+      }
+    }
+  },
   configureWebpack: {
     resolve: {
       extensions: ['.js', '.vue', '.json'],
@@ -13,6 +20,6 @@ module.exports = {
       new webpack.ProvidePlugin({
         $api: [path.resolve(__dirname, `./src/api/index.js`), 'default'],
       })
-    ]
+    ], 
   },
 }

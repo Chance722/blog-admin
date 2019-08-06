@@ -1,6 +1,6 @@
 const PROTOCOL = location.protocol
-export const BASE_URL = 'http://localhost:8080'
-export const DEVELOP_BASE_URL = 'http://localhost:8080'
+export const BASE_URL = 'http://localhost:3000'
+export const DEVELOP_BASE_URL = 'http://localhost:3000'
 // 七牛域名
 export const QINIU_DOMAIN = `${PROTOCOL}//plh0ed9u2.bkt.clouddn.com/`
 // token 字段名称
