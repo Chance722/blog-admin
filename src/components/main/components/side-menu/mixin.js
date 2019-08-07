@@ -1,8 +1,8 @@
 import CommonIcon from '_c/common-icon'
-import { showTitle } from '@/libs/util'
+import { showTitle, } from '@/libs/util'
 export default {
   components: {
-    CommonIcon
+    CommonIcon,
   },
   methods: {
     showTitle (item) {
@@ -13,6 +13,6 @@ export default {
     },
     getNameOrHref (item, children0) {
       return item.href ? `isTurnByHref_${item.href}` : (children0 ? item.children[0].name : item.name)
-    }
-  }
+    },
+  },
 }

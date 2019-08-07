@@ -60,80 +60,80 @@ export default {
       type: Array,
       default () {
         return []
-      }
+      },
     },
     columns: {
       type: Array,
       default () {
         return []
-      }
+      },
     },
     size: String,
     width: {
-      type: [Number, String]
+      type: [Number, String, ],
     },
     height: {
-      type: [Number, String]
+      type: [Number, String, ],
     },
     stripe: {
       type: Boolean,
-      default: false
+      default: false,
     },
     border: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showHeader: {
       type: Boolean,
-      default: true
+      default: true,
     },
     highlightRow: {
       type: Boolean,
-      default: false
+      default: false,
     },
     rowClassName: {
       type: Function,
       default () {
         return ''
-      }
+      },
     },
     context: {
-      type: Object
+      type: Object,
     },
     noDataText: {
-      type: String
+      type: String,
     },
     noFilteredDataText: {
-      type: String
+      type: String,
     },
     disabledHover: {
-      type: Boolean
+      type: Boolean,
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * @description 全局设置是否可编辑
      */
     editable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * @description 是否可搜索
      */
     searchable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * @description 搜索控件所在位置，'top' / 'bottom'
      */
     searchPlace: {
       type: String,
-      default: 'top'
-    }
+      default: 'top',
+    },
   },
   /**
    * Events
@@ -148,7 +148,7 @@ export default {
       edittingCellId: '',
       edittingText: '',
       searchValue: '',
-      searchKey: ''
+      searchKey: '',
     }
   },
   methods: {
@@ -159,7 +159,7 @@ export default {
             params: params,
             value: this.insideTableData[params.index][params.column.key],
             edittingCellId: this.edittingCellId,
-            editable: this.editable
+            editable: this.editable,
           },
           on: {
             'input': val => {
@@ -176,10 +176,10 @@ export default {
             'on-save-edit': (params) => {
               this.value[params.row.initRowIndex][params.column.key] = this.edittingText
               this.$emit('input', this.value)
-              this.$emit('on-save-edit', Object.assign(params, { value: this.edittingText }))
+              this.$emit('on-save-edit', Object.assign(params, { value: this.edittingText, }))
               this.edittingCellId = ''
-            }
-          }
+            },
+          },
         })
       }
       return item
@@ -256,7 +256,7 @@ export default {
     },
     onExpand (row, status) {
       this.$emit('on-expand', row, status)
-    }
+    },
   },
   watch: {
     columns (columns) {
@@ -266,12 +266,12 @@ export default {
     value (val) {
       this.handleTableData()
       this.handleSearch()
-    }
+    },
   },
   mounted () {
     this.handleColumns(this.columns)
     this.setDefaultSearchKey()
     this.handleTableData()
-  }
+  },
 }
 </script>

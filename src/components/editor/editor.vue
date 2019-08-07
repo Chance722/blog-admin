@@ -7,13 +7,13 @@
 <script>
 import Editor from 'wangeditor'
 import 'wangeditor/release/wangEditor.min.css'
-import { oneOf } from '@/libs/tools'
+import { oneOf, } from '@/libs/tools'
 export default {
   name: 'Editor',
   props: {
     value: {
       type: String,
-      default: ''
+      default: '',
     },
     /**
      * 绑定的值的类型, enum: ['html', 'text']
@@ -22,33 +22,33 @@ export default {
       type: String,
       default: 'html',
       validator: (val) => {
-        return oneOf(val, ['html', 'text'])
-      }
+        return oneOf(val, ['html', 'text', ])
+      },
     },
     /**
      * @description 设置change事件触发时间间隔
      */
     changeInterval: {
       type: Number,
-      default: 200
+      default: 200,
     },
     /**
      * @description 是否开启本地存储
      */
     cache: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   computed: {
     editorId () {
       return `editor${this._uid}`
-    }
+    },
   },
   methods: {
     setHtml (val) {
       this.editor.txt.html(val)
-    }
+    },
   },
   mounted () {
     this.editor = new Editor(`#${this.editorId}`)
@@ -64,7 +64,7 @@ export default {
     // 如果本地有存储加载本地存储内容
     let html = this.value || localStorage.editorCache
     if (html) this.editor.txt.html(html)
-  }
+  },
 }
 </script>
 

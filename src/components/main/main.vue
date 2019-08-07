@@ -41,8 +41,8 @@ import User from './components/user'
 import Fullscreen from './components/fullscreen'
 import Language from './components/language'
 import ErrorStore from './components/error-store'
-import { mapMutations, mapActions, mapGetters } from 'vuex'
-import { getNewTagList, getNextRoute, routeEqual } from '@/libs/util'
+import { mapMutations, mapActions, mapGetters, } from 'vuex'
+import { getNewTagList, getNextRoute, routeEqual, } from '@/libs/util'
 import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.jpg'
 import './main.less'
@@ -55,19 +55,19 @@ export default {
     TagsNav,
     Fullscreen,
     ErrorStore,
-    User
+    User,
   },
   data () {
     return {
       collapsed: false,
       minLogo,
       maxLogo,
-      isFullscreen: false
+      isFullscreen: false,
     }
   },
   computed: {
     ...mapGetters([
-      'errorCount'
+      'errorCount',
     ]),
     tagNavList () {
       return this.$store.state.app.tagNavList
@@ -89,20 +89,20 @@ export default {
     },
     hasReadErrorPage () {
       return this.$store.state.app.hasReadErrorPage
-    }
+    },
   },
   methods: {
     ...mapMutations([
       'setBreadCrumb',
       'setTagNavList',
       'addTag',
-      'setLocal'
+      'setLocal',
     ]),
     ...mapActions([
-      'handleLogin'
+      'handleLogin',
     ]),
     turnToPage (route) {
-      let { name, params, query } = {}
+      let { name, params, query, } = {}
       if (typeof route === 'string') name = route
       else {
         name = route.name
@@ -116,7 +116,7 @@ export default {
       this.$router.push({
         name,
         params,
-        query
+        query,
       })
     },
     handleCollapsedChange (state) {
@@ -135,19 +135,19 @@ export default {
     },
     handleClick (item) {
       this.turnToPage(item)
-    }
+    },
   },
   watch: {
     '$route' (newRoute) {
-      const { name, query, params, meta } = newRoute
+      const { name, query, params, meta, } = newRoute
       this.addTag({
-        route: { name, query, params, meta },
-        type: 'push'
+        route: { name, query, params, meta, },
+        type: 'push',
       })
       this.setBreadCrumb(newRoute)
       this.setTagNavList(getNewTagList(this.tagNavList, newRoute))
       this.$refs.sideMenu.updateOpenName(newRoute.name)
-    }
+    },
   },
   mounted () {
     /**
@@ -155,7 +155,7 @@ export default {
      */
     this.setTagNavList()
     this.addTag({
-      route: this.$store.state.app.homeRoute
+      route: this.$store.state.app.homeRoute,
     })
     this.setBreadCrumb(this.$route)
     // 设置初始语言
@@ -163,9 +163,9 @@ export default {
     // 如果当前打开页面不在标签栏中，跳到homeName页
     if (!this.tagNavList.find(item => item.name === this.$route.name)) {
       this.$router.push({
-        name: this.$config.homeName
+        name: this.$config.homeName,
       })
     }
-  }
+  },
 }
 </script>

@@ -1,5 +1,5 @@
 import config from '@/config'
-const { plugin } = config
+const { plugin, } = config
 
 export default (Vue) => {
   for (let name in plugin) {

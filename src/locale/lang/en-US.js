@@ -34,5 +34,5 @@ export default {
   error_store_page: 'Error Collection',
   error_logger_page: 'Error Logger',
   query: 'Query',
-  params: 'Params'
+  params: 'Params',
 }

@@ -1,5 +1,5 @@
 // import { login, logout, getUserInfo } from '@/api/user'
-import { setToken, getToken } from '@/libs/util'
+import { setToken, getToken, } from '@/libs/util'
 
 export default {
   state: {
@@ -8,7 +8,7 @@ export default {
     avatorImgPath: '',
     token: getToken(),
     access: '',
-    hasGetInfo: false
+    hasGetInfo: false,
   },
   mutations: {
     setAvator (state, avatorPath) {
@@ -29,7 +29,7 @@ export default {
     },
     setHasGetInfo (state, status) {
       state.hasGetInfo = status
-    }
+    },
   },
   actions: {
     // 登录
@@ -84,5 +84,5 @@ export default {
     //     }
     //   })
     // }
-  }
+  },
 }

@@ -22,9 +22,9 @@ export default [
     name: 'login',
     meta: {
       title: 'Login - 登录',
-      hideInMenu: true
+      hideInMenu: true,
     },
-    component: () => import('@/view/login')
+    component: () => import('@/view/login'),
   },
   {
     path: '/',
@@ -33,7 +33,7 @@ export default [
     component: Main,
     meta: {
       hideInMenu: true,
-      notCache: true
+      notCache: true,
     },
     children: [
       {
@@ -43,11 +43,11 @@ export default [
           hideInMenu: true,
           title: '首页',
           notCache: true,
-          icon: 'md-home'
+          icon: 'md-home',
         },
-        component: () => import('@/view/single-page/home')
-      }
-    ]
+        component: () => import('@/view/single-page/home'),
+      },
+    ],
   },
   {
     path: '',
@@ -55,15 +55,15 @@ export default [
     meta: {
       title: '文档',
       href: 'https://lison16.github.io/iview-admin-doc/#/',
-      icon: 'ios-book'
-    }
+      icon: 'ios-book',
+    },
   },
   {
     path: '/multilevel',
     name: 'multilevel',
     meta: {
       icon: 'md-menu',
-      title: '多级菜单'
+      title: '多级菜单',
     },
     component: Main,
     children: [
@@ -72,18 +72,18 @@ export default [
         name: 'level_2_1',
         meta: {
           icon: 'md-funnel',
-          title: '二级-1'
+          title: '二级-1',
         },
-        component: () => import('@/view/multilevel/level-2-1.vue')
+        component: () => import('@/view/multilevel/level-2-1.vue'),
       },
       {
         path: 'level_2_2',
         name: 'level_2_2',
         meta: {
-          access: ['super_admin'],
+          access: ['super_admin', ],
           icon: 'md-funnel',
           showAlways: true,
-          title: '二级-2'
+          title: '二级-2',
         },
         component: parentView,
         children: [
@@ -92,45 +92,45 @@ export default [
             name: 'level_2_2_1',
             meta: {
               icon: 'md-funnel',
-              title: '三级'
+              title: '三级',
             },
-            component: () => import('@/view/multilevel/level-2-2/level-3-1.vue')
-          }
-        ]
+            component: () => import('@/view/multilevel/level-2-2/level-3-1.vue'),
+          },
+        ],
       },
       {
         path: 'level_2_3',
         name: 'level_2_3',
         meta: {
           icon: 'md-funnel',
-          title: '二级-3'
+          title: '二级-3',
         },
-        component: () => import('@/view/multilevel/level-2-3.vue')
-      }
-    ]
+        component: () => import('@/view/multilevel/level-2-3.vue'),
+      },
+    ],
   },
   {
     path: '/401',
     name: 'error_401',
     meta: {
-      hideInMenu: true
+      hideInMenu: true,
     },
-    component: () => import('@/view/error-page/401.vue')
+    component: () => import('@/view/error-page/401.vue'),
   },
   {
     path: '/500',
     name: 'error_500',
     meta: {
-      hideInMenu: true
+      hideInMenu: true,
     },
-    component: () => import('@/view/error-page/500.vue')
+    component: () => import('@/view/error-page/500.vue'),
   },
   {
     path: '*',
     name: 'error_404',
     meta: {
-      hideInMenu: true
+      hideInMenu: true,
     },
-    component: () => import('@/view/error-page/404.vue')
-  }
+    component: () => import('@/view/error-page/404.vue'),
+  },
 ]

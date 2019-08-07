@@ -18,29 +18,29 @@ import CommonIcon from '_c/common-icon'
 export default {
   name: 'InforCard',
   components: {
-    CommonIcon
+    CommonIcon,
   },
   props: {
     left: {
       type: Number,
-      default: 36
+      default: 36,
     },
     color: {
       type: String,
-      default: '#2d8cf0'
+      default: '#2d8cf0',
     },
     icon: {
       type: String,
-      default: ''
+      default: '',
     },
     iconSize: {
       type: Number,
-      default: 20
+      default: 20,
     },
     shadow: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     leftWidth () {
@@ -48,8 +48,8 @@ export default {
     },
     rightWidth () {
       return `${100 - this.left}%`
-    }
-  }
+    },
+  },
 }
 </script>
 

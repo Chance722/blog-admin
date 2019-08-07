@@ -30,7 +30,7 @@ export const getIntersection = (arr1, arr2) => {
  * @description 得到两个数组的并集, 两个数组的元素为数值或字符串
  */
 export const getUnion = (arr1, arr2) => {
-  return Array.from(new Set([...arr1, ...arr2]))
+  return Array.from(new Set([...arr1, ...arr2, ]))
 }
 
 /**
@@ -219,7 +219,7 @@ export const objEqual = (obj1, obj2) => {
 * @param  {String} key 必须
 * @return {String} value
 */
- export const getItem = (key) => {
+export const getItem = (key) => {
   let k = key
   let v = ''
   try {
@@ -253,13 +253,13 @@ export const setItem = (key, value) => {
   window.localStorage.setItem(k, v)
 }
 
-  /**
+/**
   * 清除ls item值
   * @param  {String} key 必须
   * @param  {String} value 必须
   * @return undefined
   */
- export const removeItem = (key) => {
+export const removeItem = (key) => {
   let k = key
   try {
     k = window.btoa(key)

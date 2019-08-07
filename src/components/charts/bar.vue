@@ -5,24 +5,24 @@
 <script>
 import echarts from 'echarts'
 import tdTheme from './theme.json'
-import { on, off } from '@/libs/tools'
+import { on, off, } from '@/libs/tools'
 echarts.registerTheme('tdTheme', tdTheme)
 export default {
   name: 'ChartBar',
   props: {
     value: Object,
     text: String,
-    subtext: String
+    subtext: String,
   },
   data () {
     return {
-      dom: null
+      dom: null,
     }
   },
   methods: {
     resize () {
       this.dom.resize()
-    }
+    },
   },
   mounted () {
     this.$nextTick(() => {
@@ -32,19 +32,19 @@ export default {
         title: {
           text: this.text,
           subtext: this.subtext,
-          x: 'center'
+          x: 'center',
         },
         xAxis: {
           type: 'category',
-          data: xAxisData
+          data: xAxisData,
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
         },
         series: [{
           data: seriesData,
-          type: 'bar'
-        }]
+          type: 'bar',
+        }, ],
       }
       this.dom = echarts.init(this.$refs.dom, 'tdTheme')
       this.dom.setOption(option)
@@ -53,6 +53,6 @@ export default {
   },
   beforeDestroy () {
     off(window, 'resize', this.resize)
-  }
+  },
 }
 </script>

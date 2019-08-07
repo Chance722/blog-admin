@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { showTitle, routeEqual } from '@/libs/util'
+import { showTitle, routeEqual, } from '@/libs/util'
 import beforeClose from '@/router/before-close'
 export default {
   name: 'TagsNav',
@@ -57,8 +57,8 @@ export default {
       type: Array,
       default () {
         return []
-      }
-    }
+      },
+    },
   },
   data () {
     return {
@@ -70,15 +70,15 @@ export default {
       visible: false,
       menuList: {
         others: '关闭其他',
-        all: '关闭所有'
-      }
+        all: '关闭所有',
+      },
     }
   },
   computed: {
     currentRouteObj () {
-      const { name, params, query } = this.value
-      return { name, params, query }
-    }
+      const { name, params, query, } = this.value
+      return { name, params, query, }
+    },
   },
   methods: {
     handlescroll (e) {
@@ -182,7 +182,7 @@ export default {
     },
     closeMenu () {
       this.visible = false
-    }
+    },
   },
   watch: {
     '$route' (to) {
@@ -194,13 +194,13 @@ export default {
       } else {
         document.body.removeEventListener('click', this.closeMenu)
       }
-    }
+    },
   },
   mounted () {
     setTimeout(() => {
       this.getTagElementByName(this.$route)
     }, 200)
-  }
+  },
 }
 </script>
 

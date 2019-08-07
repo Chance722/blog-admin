@@ -1,4 +1,4 @@
-import { Modal } from 'iview'
+import { Modal, } from 'iview'
 
 const beforeClose = {
   before_close_normal: (resolve) => {
@@ -9,9 +9,9 @@ const beforeClose = {
       },
       onCancel: () => {
         resolve(false)
-      }
+      },
     })
-  }
+  },
 }
 
 export default beforeClose

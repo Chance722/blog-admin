@@ -2,8 +2,8 @@
  * http请求拦截器
  */
 import axios from 'axios'
-import { getItem } from '@/libs/tools'
-import { Message } from 'iview'
+import { getItem, } from '@/libs/tools'
+import { Message, } from 'iview'
 
 const config = app.$config
 

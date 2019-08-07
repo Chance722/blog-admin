@@ -12,13 +12,13 @@ export default {
   computed: {
     showFullScreenBtn () {
       return window.navigator.userAgent.indexOf('MSIE') < 0
-    }
+    },
   },
   props: {
     value: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
     handleFullscreen () {
@@ -47,7 +47,7 @@ export default {
     },
     handleChange () {
       this.handleFullscreen()
-    }
+    },
   },
   mounted () {
     let isFullscreen = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen
@@ -69,7 +69,7 @@ export default {
       this.$emit('on-change', !this.value)
     })
     this.$emit('input', isFullscreen)
-  }
+  },
 }
 </script>
 

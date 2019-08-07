@@ -1,4 +1,4 @@
-import { on } from '@/libs/tools'
+import { on, } from '@/libs/tools'
 const directives = {
   draggable: {
     inserted: (el, binding, vnode) => {
@@ -38,8 +38,8 @@ const directives = {
       if (!binding.value.recover) return
       let bodyDom = document.querySelector(binding.value.body)
       bodyDom.style.transform = ''
-    }
-  }
+    },
+  },
 }
 
 export default directives

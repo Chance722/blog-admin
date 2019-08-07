@@ -14,25 +14,25 @@ export default {
   props: {
     count: {
       type: Number,
-      default: 0
+      default: 0,
     },
     hasRead: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     countComputed () {
       return this.hasRead ? 0 : this.count
-    }
+    },
   },
   methods: {
     openErrorLoggerPage () {
       this.$router.push({
-        name: 'error_logger_page'
+        name: 'error_logger_page',
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

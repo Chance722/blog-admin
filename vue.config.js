@@ -21,21 +21,21 @@ module.exports = {
   lintOnSave: false,
   configureWebpack: {
     resolve: {
-      extensions: ['.js', '.vue', '.json'],
+      extensions: ['.js', '.vue', '.json', ],
       alias: {
-        'vue$': 'vue/dist/vue.min'
-      }
+        'vue$': 'vue/dist/vue.min',
+      },
     },
     plugins: [
       new webpack.ProvidePlugin({
-        $api: [path.resolve(__dirname, `./src/api/index.js`), 'default'],
-      })
-    ], 
+        $api: [path.resolve(__dirname, `./src/api/index.js`), 'default', ],
+      }),
+    ],
   },
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src'))
       .set('_c', resolve('src/components'))
   },
-  productionSourceMap: false
+  productionSourceMap: false,
 }

@@ -9,13 +9,13 @@ import {
   routeEqual,
   getRouteTitleHandled,
   localSave,
-  localRead
+  localRead,
 } from '@/libs/util'
 import beforeClose from '@/router/before-close'
 import router from '@/router'
 import routers from '@/router/routers'
 import config from '@/config'
-const { homeName } = config
+const { homeName, } = config
 
 const closePage = (state, route) => {
   const nextRoute = getNextRoute(state.tagNavList, route)
@@ -32,11 +32,11 @@ export default {
     homeRoute: getHomeRoute(routers, homeName),
     local: localRead('local'),
     errorList: [],
-    hasReadErrorPage: false
+    hasReadErrorPage: false,
   },
   getters: {
     menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access),
-    errorCount: state => state.errorList.length
+    errorCount: state => state.errorList.length,
   },
   mutations: {
     setBreadCrumb (state, route) {
@@ -45,7 +45,7 @@ export default {
     setTagNavList (state, list) {
       let tagList = []
       if (list) {
-        tagList = [...list]
+        tagList = [...list, ]
       } else tagList = getTagNavListFromLocalstorage() || []
       if (tagList[0] && tagList[0].name !== homeName) tagList.shift()
       let homeTagIndex = tagList.findIndex(item => item.name === homeName)
@@ -54,7 +54,7 @@ export default {
         tagList.unshift(homeTag)
       }
       state.tagNavList = tagList
-      setTagNavListInLocalstorage([...tagList])
+      setTagNavListInLocalstorage([...tagList, ])
     },
     closeTag (state, route) {
       let tag = state.tagNavList.filter(item => routeEqual(item, route))
@@ -70,7 +70,7 @@ export default {
         closePage(state, route)
       }
     },
-    addTag (state, { route, type = 'unshift' }) {
+    addTag (state, { route, type = 'unshift', }) {
       let router = getRouteTitleHandled(route)
       if (!routeHasExist(state.tagNavList, router)) {
         if (type === 'push') state.tagNavList.push(router)
@@ -78,7 +78,7 @@ export default {
           if (router.name === homeName) state.tagNavList.unshift(router)
           else state.tagNavList.splice(1, 0, router)
         }
-        setTagNavListInLocalstorage([...state.tagNavList])
+        setTagNavListInLocalstorage([...state.tagNavList, ])
       }
     },
     setLocal (state, lang) {
@@ -90,8 +90,8 @@ export default {
     },
     setHasReadErrorLoggerStatus (state, status = true) {
       state.hasReadErrorPage = status
-    }
+    },
   },
   actions: {
-  }
+  },
 }

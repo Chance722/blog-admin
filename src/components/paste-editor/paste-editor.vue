@@ -6,7 +6,7 @@
 <script>
 import CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
-import { forEach } from '@/libs/tools'
+import { forEach, } from '@/libs/tools'
 import createPlaceholder from './plugins/placeholder'
 export default {
   name: 'PasteEditor',
@@ -14,18 +14,18 @@ export default {
     value: Array,
     pasteData: {
       type: String,
-      default: ''
+      default: '',
     },
     placeholder: {
       type: String,
-      default: '从网页或其他应用软件复制表格数据，粘贴到这里 。默认第一行是表头，使用回车键添加新行，使用Tab键区分列。'
-    }
+      default: '从网页或其他应用软件复制表格数据，粘贴到这里 。默认第一行是表头，使用回车键添加新行，使用Tab键区分列。',
+    },
   },
   data () {
     return {
       pasteDataArr: [],
       rowArrLength: 0,
-      editor: null
+      editor: null,
     }
   },
   watch: {
@@ -33,7 +33,7 @@ export default {
       if (val === '') {
         this.editor.setValue('')
       }
-    }
+    },
   },
   computed: {
     rowNum () {
@@ -41,7 +41,7 @@ export default {
     },
     colNum () {
       return this.pasteDataArr[0] ? this.pasteDataArr[0].length : 0
-    }
+    },
   },
   methods: {
     handleKeyup (e) {
@@ -93,7 +93,7 @@ export default {
       forEach(this.pasteDataArr, (item, index) => {
         this.editor.removeLineClass(index, 'text', 'incorrect-row')
       })
-    }
+    },
   },
   mounted () {
     createPlaceholder(CodeMirror)
@@ -101,13 +101,13 @@ export default {
       lineNumbers: true,
       tabSize: 1,
       lineWrapping: true,
-      placeholder: this.placeholder
+      placeholder: this.placeholder,
     })
     this.editor.on('change', (editor) => {
       this.handleContentChanged(editor.getValue())
     })
     this.editor.addLineClass(0, 'text', 'first-row')
-  }
+  },
 }
 </script>
 <style lang="less">

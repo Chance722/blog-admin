@@ -22,32 +22,32 @@
 </template>
 
 <script>
-import { oneOf, on, off } from '@/libs/tools'
+import { oneOf, on, off, } from '@/libs/tools'
 import Trigger from './trigger.vue'
 export default {
   name: 'SplitPane',
   components: {
-    Trigger
+    Trigger,
   },
   props: {
     value: {
-      type: [Number, String],
-      default: 0.5
+      type: [Number, String, ],
+      default: 0.5,
     },
     mode: {
       validator (value) {
-        return oneOf(value, ['horizontal', 'vertical'])
+        return oneOf(value, ['horizontal', 'vertical', ])
       },
-      default: 'horizontal'
+      default: 'horizontal',
     },
     min: {
-      type: [Number, String],
-      default: '40px'
+      type: [Number, String, ],
+      default: '40px',
     },
     max: {
-      type: [Number, String],
-      default: '40px'
-    }
+      type: [Number, String, ],
+      default: '40px',
+    },
   },
   /**
    * Events
@@ -60,14 +60,14 @@ export default {
       prefix: 'ivu-split',
       offset: 0,
       oldOffset: 0,
-      isMoving: false
+      isMoving: false,
     }
   },
   computed: {
     wrapperClasses () {
       return [
         `${this.prefix}-wrapper`,
-        this.isMoving ? 'no-select' : ''
+        this.isMoving ? 'no-select' : '',
       ]
     },
     isHorizontal () {
@@ -87,7 +87,7 @@ export default {
     },
     computedMax () {
       return this.getComputedThresholdValue('max')
-    }
+    },
   },
   methods: {
     px2percent (numerator, denominator) {
@@ -138,18 +138,18 @@ export default {
       on(document, 'mousemove', this.handleMove)
       on(document, 'mouseup', this.handleUp)
       this.$emit('on-move-start')
-    }
+    },
   },
   watch: {
     value () {
       this.offset = (this.valueIsPx ? this.px2percent(this.value, this.$refs.outerWrapper[this.offsetSize]) : this.value) * 10000 / 100
-    }
+    },
   },
   mounted () {
     this.$nextTick(() => {
       this.offset = (this.valueIsPx ? this.px2percent(this.value, this.$refs.outerWrapper[this.offsetSize]) : this.value) * 10000 / 100
     })
-  }
+  },
 }
 </script>
 

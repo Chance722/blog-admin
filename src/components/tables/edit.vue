@@ -16,15 +16,15 @@
 export default {
   name: 'TablesEdit',
   props: {
-    value: [String, Number],
+    value: [String, Number, ],
     edittingCellId: String,
     params: Object,
-    editable: Boolean
+    editable: Boolean,
   },
   computed: {
     isEditting () {
       return this.edittingCellId === `editting-${this.params.index}-${this.params.column.key}`
-    }
+    },
   },
   methods: {
     handleInput (val) {
@@ -38,8 +38,8 @@ export default {
     },
     canceltEdit () {
       this.$emit('on-cancel-edit', this.params)
-    }
-  }
+    },
+  },
 }
 </script>
 

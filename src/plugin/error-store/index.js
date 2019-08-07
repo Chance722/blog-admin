@@ -7,11 +7,11 @@ export default {
         type: 'script',
         code: 0,
         mes: error.message,
-        url: window.location.href
+        url: window.location.href,
       }
       Vue.nextTick(() => {
         store.dispatch('addErrorLog', info)
       })
     }
-  }
+  },
 }

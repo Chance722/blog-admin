@@ -26,51 +26,51 @@
 <script>
 import SideMenuItem from './side-menu-item.vue'
 import CollapsedMenu from './collapsed-menu.vue'
-import { getUnion } from '@/libs/tools'
+import { getUnion, } from '@/libs/tools'
 import mixin from './mixin'
 
 export default {
   name: 'SideMenu',
-  mixins: [ mixin ],
+  mixins: [ mixin, ],
   components: {
     SideMenuItem,
-    CollapsedMenu
+    CollapsedMenu,
   },
   props: {
     menuList: {
       type: Array,
       default () {
         return []
-      }
+      },
     },
     collapsed: {
-      type: Boolean
+      type: Boolean,
     },
     theme: {
       type: String,
-      default: 'dark'
+      default: 'dark',
     },
     rootIconSize: {
       type: Number,
-      default: 20
+      default: 20,
     },
     iconSize: {
       type: Number,
-      default: 16
+      default: 16,
     },
     accordion: Boolean,
     activeName: {
       type: String,
-      default: ''
+      default: '',
     },
     openNames: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data () {
     return {
-      openedNames: []
+      openedNames: [],
     }
   },
   methods: {
@@ -83,12 +83,12 @@ export default {
     updateOpenName (name) {
       if (name === this.$config.homeName) this.openedNames = []
       else this.openedNames = this.getOpenedNamesByActiveName(name)
-    }
+    },
   },
   computed: {
     textColor () {
       return this.theme === 'dark' ? '#fff' : '#495060'
-    }
+    },
   },
   watch: {
     activeName (name) {
@@ -102,11 +102,11 @@ export default {
       this.$nextTick(() => {
         this.$refs.menu.updateOpened()
       })
-    }
+    },
   },
   mounted () {
     this.openedNames = getUnion(this.openedNames, this.getOpenedNamesByActiveName(name))
-  }
+  },
 }
 </script>
 <style lang="less">

@@ -23,25 +23,25 @@ import draggable from 'vuedraggable'
 export default {
   name: 'DragList',
   components: {
-    draggable
+    draggable,
   },
   props: {
     list1: {
       type: Array,
-      required: true
+      required: true,
     },
     list2: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     dropConClass: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   data () {
     return {
-      options: { group: 'drag_list' }
+      options: { group: 'drag_list', },
     }
   },
   methods: {
@@ -75,10 +75,10 @@ export default {
         src: src,
         target: target,
         oldIndex: event.oldIndex,
-        newIndex: event.newIndex
+        newIndex: event.newIndex,
       })
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="less">

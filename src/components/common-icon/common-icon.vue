@@ -6,14 +6,14 @@
 import Icons from '_c/icons'
 export default {
   name: 'CommonIcon',
-  components: { Icons },
+  components: { Icons, },
   props: {
     type: {
       type: String,
-      required: true
+      required: true,
     },
     color: String,
-    size: Number
+    size: Number,
   },
   computed: {
     iconType () {
@@ -27,13 +27,13 @@ export default {
     },
     iconColor () {
       return this.color || ''
-    }
+    },
   },
   methods: {
     getCustomIconName (iconName) {
       return iconName.slice(1)
-    }
-  }
+    },
+  },
 }
 </script>
 

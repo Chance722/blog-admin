@@ -12,30 +12,30 @@
 
 <script>
 import './user.less'
-import { mapActions } from 'vuex'
+import { mapActions, } from 'vuex'
 export default {
   name: 'User',
   props: {
     userAvator: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   methods: {
     ...mapActions([
-      'handleLogOut'
+      'handleLogOut',
     ]),
     handleClick (name) {
       switch (name) {
         case 'logout':
           this.handleLogOut().then(() => {
             this.$router.push({
-              name: 'login'
+              name: 'login',
             })
           })
           break
       }
-    }
-  }
+    },
+  },
 }
 </script>

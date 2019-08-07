@@ -12,18 +12,18 @@ export default {
   data () {
     return {
       second: 5,
-      timer: null
+      timer: null,
     }
   },
   methods: {
     backHome () {
       this.$router.replace({
-        name: this.$config.homeName
+        name: this.$config.homeName,
       })
     },
     backPrev () {
       this.$router.go(-1)
-    }
+    },
   },
   mounted () {
     this.timer = setInterval(() => {
@@ -33,6 +33,6 @@ export default {
   },
   beforeDestroy () {
     clearInterval(this.timer)
-  }
+  },
 }
 </script>

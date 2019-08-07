@@ -5,24 +5,24 @@
 <script>
 import echarts from 'echarts'
 import tdTheme from './theme.json'
-import { on, off } from '@/libs/tools'
+import { on, off, } from '@/libs/tools'
 echarts.registerTheme('tdTheme', tdTheme)
 export default {
   name: 'ChartPie',
   props: {
     value: Array,
     text: String,
-    subtext: String
+    subtext: String,
   },
   data () {
     return {
-      dom: null
+      dom: null,
     }
   },
   methods: {
     resize () {
       this.dom.resize()
-    }
+    },
   },
   mounted () {
     this.$nextTick(() => {
@@ -31,32 +31,32 @@ export default {
         title: {
           text: this.text,
           subtext: this.subtext,
-          x: 'center'
+          x: 'center',
         },
         tooltip: {
           trigger: 'item',
-          formatter: '{a} <br/>{b} : {c} ({d}%)'
+          formatter: '{a} <br/>{b} : {c} ({d}%)',
         },
         legend: {
           orient: 'vertical',
           left: 'left',
-          data: legend
+          data: legend,
         },
         series: [
           {
             type: 'pie',
             radius: '55%',
-            center: ['50%', '60%'],
+            center: ['50%', '60%', ],
             data: this.value,
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
                 shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              }
-            }
-          }
-        ]
+                shadowColor: 'rgba(0, 0, 0, 0.5)',
+              },
+            },
+          },
+        ],
       }
       this.dom = echarts.init(this.$refs.dom, 'tdTheme')
       this.dom.setOption(option)
@@ -65,6 +65,6 @@ export default {
   },
   beforeDestroy () {
     off(window, 'resize', this.resize)
-  }
+  },
 }
 </script>

@@ -12,22 +12,22 @@ export default {
   props: {
     value: {
       type: String,
-      default: ''
+      default: '',
     },
     options: {
       type: Object,
       default: () => {
         return {}
-      }
+      },
     },
     localCache: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data () {
     return {
-      editor: null
+      editor: null,
     }
   },
   methods: {
@@ -44,11 +44,11 @@ export default {
       this.editor.codemirror.on('blur', () => {
         this.$emit('on-blur', this.editor.value())
       })
-    }
+    },
   },
   mounted () {
     this.editor = new Simplemde(Object.assign(this.options, {
-      element: this.$refs.editor
+      element: this.$refs.editor,
     }))
     /**
      * 事件列表为Codemirror编辑器的事件，更多事件类型，请参考：
@@ -57,7 +57,7 @@ export default {
     this.addEvents()
     let content = localStorage.markdownContent
     if (content) this.editor.value(content)
-  }
+  },
 }
 </script>
 

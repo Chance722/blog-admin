@@ -8,12 +8,12 @@ import errorContent from './error-content.vue'
 export default {
   name: 'error_500',
   components: {
-    errorContent
+    errorContent,
   },
   data () {
     return {
-      src: error404
+      src: error404,
     }
-  }
+  },
 }
 </script>

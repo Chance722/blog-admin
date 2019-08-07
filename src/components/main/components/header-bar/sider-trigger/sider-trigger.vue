@@ -8,18 +8,18 @@ export default {
     collapsed: Boolean,
     icon: {
       type: String,
-      default: 'navicon-round'
+      default: 'navicon-round',
     },
     size: {
       type: Number,
-      default: 26
-    }
+      default: 26,
+    },
   },
   methods: {
     handleChange () {
       this.$emit('on-change', !this.collapsed)
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="less">
