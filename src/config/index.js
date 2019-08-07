@@ -1,5 +1,35 @@
 export default {
   /**
+   * @description token 字段名称
+   */
+  blogAdminAccessToken: 'BLOGADMIN_ACCESS_TOKEN',
+  /**
+   * @description 七牛域名
+   */
+  qiniuDomain: `${location.protocol}//plh0ed9u2.bkt.clouddn.com/`,
+  /**
+   * @description token过期 字段名称
+   */
+  blogAdminTokenTime: 'BLOGADMIN_TOKEN_TIME',
+  /**
+   * @description token过期时间 24h
+   */
+  expiredTime: 24,
+  /**
+   * @description 用户信息字段
+   */
+  blogAdminData: 'BLOGADMIN_DATA',
+  /**
+   * @description 时间统计类型字段
+   */
+  dateStatType: {
+    RecentWeek: 1,
+    RecentMonth: 2,
+    RecentThreeMonths: 3,
+    RecentHalfYear: 4,
+    RecentYear: 5,
+  },
+  /**
    * @description token在Cookie中存储的天数，默认1天
    */
   cookieExpires: 1,
@@ -13,8 +43,8 @@ export default {
    * @description api请求基础路径
    */
   baseUrl: {
-    dev: 'https://www.easy-mock.com/mock/5add9213ce4d0e69998a6f51/iview-admin/',
-    pro: 'https://produce.com'
+    dev: 'http://localhost:3000',
+    pro: 'http://localhost:3000'
   },
   /**
    * @description 默认打开的首页的路由name值，默认为home

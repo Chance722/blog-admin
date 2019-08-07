@@ -213,3 +213,57 @@ export const objEqual = (obj1, obj2) => {
   /* eslint-disable-next-line */
   else return !keysArr1.some(key => obj1[key] != obj2[key])
 }
+
+/**
+* 获取ls item值
+* @param  {String} key 必须
+* @return {String} value
+*/
+ export const getItem = (key) => {
+  let k = key
+  let v = ''
+  try {
+    k = window.btoa(key)
+  } catch (e) {
+  }
+  v = window.localStorage.getItem(k) || '' // atob(null) => 'ée' => JSON.parse('ée') => ERROR
+  try {
+    v = window.atob(v)
+  } catch (e) {
+    console.log(e)
+  }
+  return v
+}
+
+/**
+* 设置ls item值
+* @param  {String} key 必须
+* @param  {String} value 必须
+* @return undefined
+*/
+export const setItem = (key, value) => {
+  let k = key
+  let v = value
+  try {
+    k = window.btoa(key)
+    v = window.btoa(value)
+  } catch (e) {
+  }
+  window.localStorage.removeItem(k) // ios bug,需先remove再set
+  window.localStorage.setItem(k, v)
+}
+
+  /**
+  * 清除ls item值
+  * @param  {String} key 必须
+  * @param  {String} value 必须
+  * @return undefined
+  */
+ export const removeItem = (key) => {
+  let k = key
+  try {
+    k = window.btoa(key)
+  } catch (e) {
+  }
+  window.localStorage.removeItem(k)
+}

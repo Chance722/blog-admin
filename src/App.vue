@@ -6,22 +6,22 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .size{
   width: 100%;
   height: 100%;
 }
 html,body{
-  .size;
+  @extend .size;
   overflow: hidden;
   margin: 0;
   padding: 0;
 }
 #app {
-  .size;
+  @extend .size;
 }
 </style>
