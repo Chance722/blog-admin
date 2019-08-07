@@ -1,12 +1,5 @@
 language: node_js
-
-node_js: '10.15.3'
-
-install:
-  - npm install
-script:
-  - npm run build
-
-branches:
-  only:
-    - new
+node_js: stable
+script: npm run lint
+notifications:
+  email: false

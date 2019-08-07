@@ -1,40 +1,46 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App'
 import router from './router'
 import store from './store'
-import VueAxios from 'vue-axios'
-import axios from './utils/axios'
-import VueProgressBar from 'vue-progressbar'
 import iView from 'iview'
-// import 'iview/dist/styles/iview.css'
-import '@/assets/css/mytheme.less'
+import i18n from '@/locale'
+import config from '@/config'
+import importDirective from '@/directive'
+import installPlugin from '@/plugin'
+import 'iview/dist/styles/iview.css'
+import './index.less'
+import '@/assets/icons/iconfont.css'
+// 实际打包时应该不引入mock
+/* eslint-disable */
+if (process.env.NODE_ENV !== 'production') require('@/mock')
 
-import '@/assets/css/reset.scss'
-import '@/assets/css/public.scss'
-
-Vue.use(VueAxios, axios)
-Vue.use(VueProgressBar, {
-  color: '#409eff',
-  failedColor: '#874b4b',
-  thickness: '2px',
-  transition: {
-    speed: '0.2s',
-    opacity: '0.6s',
-    termination: 300,
-  },
-  autoRevert: true,
-  location: 'top',
-  inverse: false,
+Vue.use(iView, {
+  i18n: (key, value) => i18n.t(key, value)
 })
-Vue.use(iView)
-
+/**
+ * @description 注册admin内置插件
+ */
+installPlugin(Vue)
+/**
+ * @description 生产环境关掉提示
+ */
 Vue.config.productionTip = false
-Vue.prototype.$eventhub = new Vue({})
+/**
+ * @description 全局注册应用配置
+ */
+Vue.prototype.$config = config
+/**
+ * 注册指令
+ */
+importDirective(Vue)
 
-const app = new Vue({
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
   router,
+  i18n,
   store,
-  render: h => h(App),
+  render: h => h(App)
 })
-
-export default app.$mount('#app')
