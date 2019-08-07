@@ -4,8 +4,7 @@
 import axios from 'axios'
 import { getItem, } from '@/libs/tools'
 import { Message, } from 'iview'
-
-const config = app.$config
+import config from '@/config'
 
 axios.defaults.baseURL = Object.is(process.env, 'production') ? config.baseUrl.pro : config.baseUrl.dev
 

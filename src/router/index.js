@@ -33,12 +33,12 @@ router.beforeEach((to, from, next) => {
     next({
       name: LOGIN_PAGE_NAME,
     })
-  } else if (!isLogined && to.name === LOGIN_PAGE_NAME) {
-    next()
   } else if (isLogined && to.name === LOGIN_PAGE_NAME) {
     next({
       name: homeName,
     })
+  } else {
+    next()
   }
 })
 

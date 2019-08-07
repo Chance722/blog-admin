@@ -267,3 +267,19 @@ export const removeItem = (key) => {
   }
   window.localStorage.removeItem(k)
 }
+
+  /**
+   * 判断参数是否为空
+   * @param {...any} args
+   * @return {boolean} isEmpty
+   */
+  export const isParamsEmpty = (...args) => {
+    let isEmpty = false
+    for (const arg of args) {
+      if (arg === null || arg === undefined || arg === '') {
+        isEmpty = true
+        break
+      }
+    }
+    return isEmpty
+  }
