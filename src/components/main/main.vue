@@ -45,6 +45,8 @@ import { mapMutations, mapActions, mapGetters, } from 'vuex'
 import { getNewTagList, getNextRoute, routeEqual, } from '@/libs/util'
 import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.jpg'
+import defaultImg from '@/assets/images/default.jpg'
+
 import './main.less'
 export default {
   name: 'Main',
@@ -62,6 +64,7 @@ export default {
       collapsed: false,
       minLogo,
       maxLogo,
+      defaultImg,
       isFullscreen: false,
     }
   },
@@ -75,8 +78,11 @@ export default {
     tagRouter () {
       return this.$store.state.app.tagRouter
     },
+    userData () {
+      return this.$store.state.user.userData
+    },
     userAvator () {
-      return this.$store.state.user.avatorImgPath
+      return this.userData ? this.userData.avator : defaultImg
     },
     cacheList () {
       return this.tagNavList.length ? this.tagNavList.filter(item => !(item.meta && item.meta.notCache)).map(item => item.name) : []
@@ -150,6 +156,7 @@ export default {
     },
   },
   mounted () {
+    console.log(this.$store)
     /**
      * @description 初始化设置面包屑导航和标签导航
      */

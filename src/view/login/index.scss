@@ -4,16 +4,15 @@
     background-color:#1b1b1b;
     position: relative;
     &-logo{
-        width: 540px;
-        height: 359px;
+        width: 338px;
+        height: 157px;
         position: absolute;
-        left: 0;
+        left: 20px;
         top: 0;
         background-image: url('../../assets/images/login-logo.png');
-        background-size: 540px;
+        background-size: 338px;
         background-position: left top;
         background-repeat: no-repeat;
-        transform: scale(.8) translate(-15%, -15%);
         pointer-events: none;
     }
     &-con{
