@@ -45,68 +45,141 @@ export default [
           notCache: true,
           icon: 'md-home',
         },
-        component: () => import('@/view/single-page/home'),
+        component: () => import('@/view/home'),
       },
     ],
   },
   {
     path: '',
-    name: 'doc',
+    name: 'articles',
     meta: {
-      title: '文档',
-      href: 'https://lison16.github.io/iview-admin-doc/#/',
-      icon: 'ios-book',
-    },
-  },
-  {
-    path: '/multilevel',
-    name: 'multilevel',
-    meta: {
-      icon: 'md-menu',
-      title: '多级菜单',
+      hideInBread: true,
     },
     component: Main,
     children: [
       {
-        path: 'level_2_1',
-        name: 'level_2_1',
+        path: '/articles',
+        name:'articles-page',
         meta: {
-          icon: 'md-funnel',
-          title: '二级-1',
+          title: '文章管理',
+          icon: 'ios-paper',
         },
-        component: () => import('@/view/multilevel/level-2-1.vue'),
-      },
+        component: () => import('@/view/articles/')
+      }
+    ],
+  },
+  {
+    path: '',
+    name: 'categorys',
+    meta: {
+      hideInBread: true,
+    },
+    component: Main,
+    children: [
       {
-        path: 'level_2_2',
-        name: 'level_2_2',
+        path: '/categorys',
+        name:'categorys-page',
         meta: {
-          access: ['super_admin', ],
-          icon: 'md-funnel',
-          showAlways: true,
-          title: '二级-2',
+          title: '分类管理',
+          icon: 'md-apps',
         },
-        component: parentView,
-        children: [
-          {
-            path: 'level_2_2_1',
-            name: 'level_2_2_1',
-            meta: {
-              icon: 'md-funnel',
-              title: '三级',
-            },
-            component: () => import('@/view/multilevel/level-2-2/level-3-1.vue'),
-          },
-        ],
-      },
+        component: () => import('@/view/categorys/')
+      }
+    ],
+  },
+  {
+    path: '',
+    name: 'tags',
+    meta: {
+      hideInBread: true,
+    },
+    component: Main,
+    children: [
       {
-        path: 'level_2_3',
-        name: 'level_2_3',
+        path: '/tags',
+        name:'tags-page',
         meta: {
-          icon: 'md-funnel',
-          title: '二级-3',
+          title: '标签管理',
+          icon: 'md-pricetag',
         },
-        component: () => import('@/view/multilevel/level-2-3.vue'),
-      },
+        component: () => import('@/view/tags/')
+      }
+    ],
+  },
+  {
+    path: '',
+    name: 'albums',
+    meta: {
+      hideInBread: true,
+    },
+    component: Main,
+    children: [
+      {
+        path: '/albums',
+        name:'albums-page',
+        meta: {
+          title: '相册管理',
+          icon: 'md-photos',
+        },
+        component: () => import('@/view/albums/')
+      }
+    ],
+  },
+  {
+    path: '',
+    name: 'comments',
+    meta: {
+      hideInBread: true,
+    },
+    component: Main,
+    children: [
+      {
+        path: '/comments',
+        name:'comments-page',
+        meta: {
+          title: '评论管理',
+          icon: 'ios-text',
+        },
+        component: () => import('@/view/comments/')
+      }
+    ],
+  },
+  {
+    path: '',
+    name: 'musics',
+    meta: {
+      hideInBread: true,
+    },
+    component: Main,
+    children: [
+      {
+        path: '/muscis',
+        name:'musics-page',
+        meta: {
+          title: '音乐管理',
+          icon: 'ios-musical-notes',
+        },
+        component: () => import('@/view/musics/')
+      }
+    ],
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    meta: {
+      hideInBread: true,
+    },
+    component: Main,
+    children: [
+      {
+        path: 'settings-page',
+        name:'settings-page',
+        meta: {
+          title: '全局设置',
+          icon: 'md-settings',
+        },
+        component: () => import('@/view/settings/')
+      }
     ],
   },
   {
