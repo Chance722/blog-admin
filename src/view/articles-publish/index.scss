@@ -1,0 +1,16 @@
+.articles-publish {
+  display: flex;
+}
+
+.left-view {
+  flex: 1 0 auto;
+}
+
+.right-view {
+  width: 300px;
+
+  section {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}

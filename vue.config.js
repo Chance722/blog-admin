@@ -17,6 +17,13 @@ const BASE_URL = process.env.NODE_ENV === 'production'
   : '/'
 
 module.exports = {
+  css: {
+    loaderOptions: {
+      sass: {
+        data: `@import "@/assets/css/index.scss";`
+      },
+    },
+  },
   publicPath: BASE_URL,
   lintOnSave: false,
   configureWebpack: {

@@ -50,7 +50,9 @@
 				</Row>
 			</Form>
 		</Card>
-		<Button size="large"  icon="ios-paper-plane" type="primary" :class="'publish-btn'">发布文章</Button>
+		<router-link :to="'/articles-publish'">
+			<Button size="large"  icon="ios-paper-plane" type="primary" :class="'publish-btn'">发布文章</Button>
+		</router-link>
 	</section>
 </template>
 

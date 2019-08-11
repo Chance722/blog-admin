@@ -65,6 +65,15 @@ export default [
           icon: 'ios-paper',
         },
         component: () => import('@/view/articles/')
+      },
+      {
+        path: '/articles-publish',
+        name:'articles-publish',
+        meta: {
+          title: '发布文章',
+          hideInMenu: true,
+        },
+        component: () => import('@/view/articles-publish/')
       }
     ],
   },
@@ -164,7 +173,7 @@ export default [
     ],
   },
   {
-    path: '/settings',
+    path: '',
     name: 'settings',
     meta: {
       hideInBread: true,
@@ -172,7 +181,7 @@ export default [
     component: Main,
     children: [
       {
-        path: 'settings-page',
+        path: '/settings',
         name:'settings-page',
         meta: {
           title: '全局设置',

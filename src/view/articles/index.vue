@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import articlesPanel from './articles-panel'
-import articlesList from './articles-list'
+import articlesPanel from './components/articles-panel'
+import articlesList from './components/articles-list'
 export default {
 	components: {
 		articlesPanel,

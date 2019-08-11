@@ -11,7 +11,6 @@ import installPlugin from '@/plugin'
 import 'iview/dist/styles/iview.css'
 import './index.less'
 import '@/assets/icons/iconfont.css'
-import '@/assets/css/index.scss'
 
 Vue.use(iView)
 
