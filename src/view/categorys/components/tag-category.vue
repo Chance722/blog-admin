@@ -120,7 +120,8 @@
     </Card>
     <addModal
       :isShowModal="showModal"
-      :title="'创建文章分类'"
+      :title="'创建标签分类'"
+      :type="'tags'"
       @close-modal="showModal = false"
       @add-categorys="addCategorys" />
   </section>
@@ -228,4 +229,22 @@ export default {
   }
 }
 
+.ivu-modal {
+  width: 500px!important;
+
+  .upload-container {
+    width: 386px;
+    height: 150px;
+    border: 1px dashed #dadada;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+      color: #3399ff;
+      border-color: #3399ff;
+    }
+  }
+}
 </style>
