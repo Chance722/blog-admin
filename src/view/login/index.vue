@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <particle-bg />
-    <div class="login-logo" />
+    <!-- <div class="login-logo" /> -->
     <div class="login-con">
       <Card icon="log-in" title="欢迎登录" :bordered="false">
         <div class="form-con">

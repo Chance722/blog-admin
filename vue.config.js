@@ -1,5 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
+const WebpackChokidarPlugin = require('webpack-chokidar-plugin')
+const { getIconClasses } = require('./getIconClasses')
 
 const resolve = dir => {
   return path.join(__dirname, dir)
@@ -36,6 +38,13 @@ module.exports = {
     plugins: [
       new webpack.ProvidePlugin({
         $api: [path.resolve(__dirname, `./src/api/index.js`), 'default', ],
+      }),
+      new WebpackChokidarPlugin({
+        watchFilePaths: [
+          path.resolve(__dirname, './src/assets/icons/**')
+        ],
+        onAddCallback: path => getIconClasses(path),
+        onChangeCallback: path => getIconClasses(path),
       }),
     ],
   },
