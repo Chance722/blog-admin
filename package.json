@@ -47,11 +47,12 @@
     "less-loader": "^4.0.5",
     "lint-staged": "^6.0.0",
     "mockjs": "^1.0.1-beta3",
+    "rimraf": "^3.0.0",
     "sass": "^1.22.9",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^4.39.1",
-    "webpack-chokidar-plugin": "^1.0.2"
+    "webpack-chokidar-plugin": "^1.0.5"
   },
   "browserslist": [
     "> 1%",

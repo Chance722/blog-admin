@@ -1,18 +1,21 @@
 const fs = require('fs')
 const path = require('path')
-// const cheerio = require('cheerio')
+const rimraf = require('rimraf')
+const cheerio = require('cheerio')
 const cssPath = path.resolve(__dirname, './src/assets/icons/iconfont.css')
 const htmlPath = path.resolve(__dirname, './src/assets/icons/demo_index.html')
+const jsonPath = path.resolve(__dirname, './public/iconfont.json')
 
-let file = null
+let cssFile = null
+let htmlFile = null
 let $ = null
 try {
-  file = fs.readFileSync(cssPath, 'utf-8')
-  // $ = cheerio.load(htmlPath, 'utf-8')
+  cssFile = fs.readFileSync(cssPath, 'utf-8')
+  htmlFile = fs.readFileSync(htmlPath, 'utf-8')
+  $ = cheerio.load(htmlFile, { decodeEntities: false })
 } catch (e) {
   console.log(e)
 }
-
 
 function getIconArray (str, array = []) {
   let iconArray = array.slice()
@@ -22,21 +25,22 @@ function getIconArray (str, array = []) {
   return getIconArray(str.slice(m.index + m[0].length, str.length), iconArray)
 }
 
-const getIconClasses = path => {
-  console.log(`${path} was changed.`)
-  const fileStr = file.replace(/[\r\n]/g,"")
+const getIconClasses = listenPath => {
+  console.log(`${listenPath} was changed.`)
+  const fileStr = cssFile.replace(/[\r\n]/g,"")
   const iconArray = getIconArray(fileStr).map(item => item.replace('.', '').replace(':before', ''))
-  let nameArray = []
-  // iconArray.forEach(item => {
-  //   const $fontcls = $.find('.content.font-class')
-  //   const nameTxt = $fontcls.find(`.icon-font.${item}`).find('.name').html()
-  //   nameArray.push(nameTxt)
-  // })
+  let iconMap = {}
+  iconArray.forEach(item => {
+    const $fontcls = $('.tab-container').find('.content.font-class')
+    const nameTxt = $fontcls.find(`.iconfont.${item}`).parents('li').find('.name').html()
+    iconMap[item] = nameTxt.replace(/[\r\n]/g,"").trim()
+  })
 
+  rimraf(jsonPath, err => {
+    if (err) console.log(err)
+    fs.writeFileSync(jsonPath, JSON.stringify(iconMap))
+  })
 
-  console.log(iconArray)
-  console.log(nameArray)
 }
-
 
 module.exports.getIconClasses = getIconClasses

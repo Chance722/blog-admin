@@ -1,5 +1,5 @@
 <template>
-  <section class="article-categorys">
+  <section class="album-categorys">
     <Card class="card-item">
       <div class="add-container" @click="showModal = true">
         <Icon type="md-add-circle" />
@@ -83,7 +83,7 @@ export default {
 </script>
 
 <style lang="scss">
-.article-categorys {
+.album-categorys {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;

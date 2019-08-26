@@ -20,7 +20,7 @@
 <script>
 import articleCategorys from './components/article-categorys'
 import albumCategorys from './components/album-categorys'
-import tagCategorys from './components/tag-category'
+import tagCategorys from './components/tag-categorys'
 export default {
   components: {
     articleCategorys,

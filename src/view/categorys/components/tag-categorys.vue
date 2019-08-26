@@ -1,5 +1,5 @@
 <template>
-  <section class="article-categorys">
+  <section class="tag-categorys">
     <Card class="card-item">
       <div class="add-container" @click="showModal = true">
         <Icon type="md-add-circle" />
@@ -122,6 +122,7 @@
       :isShowModal="showModal"
       :title="'创建标签分类'"
       :type="'tags'"
+      :iconMap="iconMap"
       @close-modal="showModal = false"
       @add-categorys="addCategorys" />
   </section>
@@ -130,6 +131,7 @@
 <script>
 import defaultImg from '@/assets/images/logo-min.png'
 import addModal from './add-modal'
+import axios from 'axios'
 export default {
   components: {
     addModal,
@@ -138,9 +140,20 @@ export default {
     return {
       showModal: false,
       defaultImg,
+      iconMap: {},
     }
   },
+  created () {
+    this.init()
+  },
   methods: {
+    init () {
+      this.initIconMap()
+    },
+    async initIconMap () {
+      const res = await axios.get('iconfont.json')
+      if (res.status === 200) this.iconMap = res.data
+    },
     handleSuccess () {},
     handleUpload () {},
     addCategorys () {
@@ -152,7 +165,7 @@ export default {
 </script>
 
 <style lang="scss">
-.article-categorys {
+.tag-categorys {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -225,25 +238,6 @@ export default {
       cursor: pointer;
       border-color: #2d8cf0;
       color: #2d8cf0;
-    }
-  }
-}
-
-.ivu-modal {
-  width: 500px!important;
-
-  .upload-container {
-    width: 386px;
-    height: 150px;
-    border: 1px dashed #dadada;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-      cursor: pointer;
-      color: #3399ff;
-      border-color: #3399ff;
     }
   }
 }

@@ -20,26 +20,38 @@
             </FormItem>
           </Col>
           <Col span="11">
+            <FormItem label="标签图标">
+              <Select v-model="formModel.iconCls" filterable>
+                <Option v-for="(value, key) in iconMap" :value="key" :key="key" :label="value">
+                  <span>{{ value }}</span>
+                  <span style="float: right;"><Icon :custom="'iconfont ' + key" /></span>
+                </Option>
+              </Select>
+            </FormItem>
+          </Col>
+          <Col span="11">
             <FormItem label="预览">
               <Tag :color="formModel.tagBgColor || 'default'" :style="{'height': '24px'}">
-                <Icon type="logo-nodejs" :size="15" />
+                <Icon :custom="'iconfont ' + formModel.iconCls" :size="15" />
                 <span class="inline-middle ml5">标签一</span>
               </Tag>
             </FormItem>
           </Col>
         </Row>
       </template>
-      <FormItem :label="uploadTitle" prop="url">
-        <Upload
-          action="//jsonplaceholder.typicode.com/posts/"
-          :before-upload="handleUpload"
-          :on-success="handleSuccess">
-          <div class="upload-container" :class="{'thumbnail': uploadTitle === uploadType.thumbnail}">
-            <Icon type="ios-cloud-upload" size="30"></Icon>
-            <span v-show="uploadTitle !== uploadType.thumbnail" class="inline-middle ml10">上传</span>
-          </div>
-        </Upload>
-      </FormItem>
+      <template v-else>
+        <FormItem label="封面图" prop="url">
+          <Upload
+            action="//jsonplaceholder.typicode.com/posts/"
+            :before-upload="handleUpload"
+            :on-success="handleSuccess">
+            <div class="upload-container">
+              <Icon type="ios-cloud-upload" size="30"></Icon>
+              <span class="inline-middle ml10">上传</span>
+            </div>
+          </Upload>
+        </FormItem>
+      </template>
     </Form>
   </Modal>
 </template>
@@ -59,31 +71,27 @@ export default {
       type: String,
       default: 'common',
     },
+    iconMap: {
+      type: Object,
+      default: () => {}
+    },
   },
   data () {
     return {
-       formModel: {
+      iconMap: {},
+      formModel: {
         name: '',
         desc: '',
         url: '',
         tagBgColor: '',
         tagColor: '#515a6e',
+        iconCls: '',
       },
       formRules: {
         name: [
           { required: true, message: '名称不能为空', trigger: 'blur' },
         ],
       },
-      uploadType: {
-        cover: '封面图',
-        thumbnail: '缩略图',
-      },
-    }
-  },
-  computed: {
-    uploadTitle () {
-      if (this.type === 'tags') return this.uploadType.thumbnail
-      if (this.type === 'common')  return this.uploadType.cover
     }
   },
   methods: {
@@ -91,10 +99,21 @@ export default {
       this.$emit('add-categorys')
     },
     closeModal () {
+      this.clearFormModel()
       this.$emit('close-modal')
     },
     updateColor (color) {
       console.log(color)
+    },
+    clearFormModel () {
+      this.formModel = {
+        name: '',
+        desc: '',
+        url: '',
+        tagBgColor: '',
+        tagColor: '#515a6e',
+        iconCls: '',
+      }
     },
   },
 }

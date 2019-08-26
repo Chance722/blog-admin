@@ -41,10 +41,10 @@ module.exports = {
       }),
       new WebpackChokidarPlugin({
         watchFilePaths: [
-          path.resolve(__dirname, './src/assets/icons/**')
+          './src/assets/icons/**'
         ],
-        onAddCallback: path => getIconClasses(path),
-        onChangeCallback: path => getIconClasses(path),
+        onAddCallback: listenPath => getIconClasses(listenPath),
+        onChangeCallback: listenPath => getIconClasses(listenPath),
       }),
     ],
   },

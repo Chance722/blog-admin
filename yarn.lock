@@ -8211,9 +8211,9 @@ rollup-pluginutils@^2.8.1:
     estree-walker "^0.6.1"
 
 rollup@^1.20.1:
-  version "1.20.1"
-  resolved "https://registry.npmjs.org/rollup/-/rollup-1.20.1.tgz#fc66f356c5afbd7c62434f1e7a53a1e7da5a2b32"
-  integrity sha512-8DV8eWLq84fbJFRqkjWg8BWX4NTTdHpx9bxjmTl/83z54o6Ygo1OgUDjJGFq/xe5i0kDspnbjzw2V+ZPXD/BrQ==
+  version "1.20.2"
+  resolved "https://registry.npmjs.org/rollup/-/rollup-1.20.2.tgz#0e1be13cb5de244c9c463027092f7c93461558b9"
+  integrity sha512-pF4jFzNWMUuudIAeiTgOcSxn8XkBN2Y2/IwPR7iL/IZ8k9RwoLyp2QwNWiYT+HF537zwpmzZHTBYw345H9vq1A==
   dependencies:
     "@types/estree" "0.0.39"
     "@types/node" "^12.7.2"
@@ -9631,10 +9631,10 @@ webpack-chain@^4.11.0:
     deepmerge "^1.5.2"
     javascript-stringify "^1.6.0"
 
-webpack-chokidar-plugin@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/webpack-chokidar-plugin/-/webpack-chokidar-plugin-1.0.2.tgz#d8f1f3c99a543b359c6000904c4761d3b87be35f"
-  integrity sha512-odhdPMNt2pt0M9/tS7gaP20itDV1kyz92xu1Wrg7U0FlaEwy/YkYTfNMTEJn99oXb2UKwbJ7wTiS5vXtxdMh6w==
+webpack-chokidar-plugin@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/webpack-chokidar-plugin/-/webpack-chokidar-plugin-1.0.5.tgz#787ff5dc1e4c22c6e955da01dff6cc7336f769cc"
+  integrity sha512-fjYE4pP94sWmL7jxHHM2EaPbLCcB9BsoLH5N1GONhohclCcxR1ARH62UdCP4svPzQceES6lab+EekJAya2OywQ==
   dependencies:
     "@babel/core" "^7.5.5"
     "@babel/plugin-transform-runtime" "^7.5.5"
