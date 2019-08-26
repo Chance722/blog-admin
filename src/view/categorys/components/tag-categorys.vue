@@ -14,7 +14,7 @@
       <div class="card-item-content">
         <div class="desc">Talk is cheap,show me your code.</div>
         <div class="articles-num">
-          <p>关联文章</p>
+          <p>关联标签</p>
           <p>8</p>
         </div>
       </div>
@@ -36,7 +36,7 @@
       <div class="card-item-content">
         <div class="desc">Talk is cheap,show me your code.</div>
         <div class="articles-num">
-          <p>关联文章</p>
+          <p>关联标签</p>
           <p>8</p>
         </div>
       </div>
@@ -58,7 +58,7 @@
       <div class="card-item-content">
         <div class="desc">Talk is cheap,show me your code.</div>
         <div class="articles-num">
-          <p>关联文章</p>
+          <p>关联标签</p>
           <p>8</p>
         </div>
       </div>
@@ -81,7 +81,7 @@
       <div class="card-item-content">
         <div class="desc">Talk is cheap,show me your code.</div>
         <div class="articles-num">
-          <p>关联文章</p>
+          <p>关联标签</p>
           <p>8</p>
         </div>
       </div>
@@ -104,7 +104,7 @@
       <div class="card-item-content">
         <div class="desc">Talk is cheap,show me your code.</div>
         <div class="articles-num">
-          <p>关联文章</p>
+          <p>关联标签</p>
           <p>8</p>
         </div>
       </div>
