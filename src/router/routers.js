@@ -67,13 +67,13 @@ export default [
         component: () => import('@/view/articles/')
       },
       {
-        path: '/articles-publish',
-        name:'articles-publish',
+        path: '/article-publish',
+        name:'article-publish',
         meta: {
           title: '发布文章',
           hideInMenu: true,
         },
-        component: () => import('@/view/articles-publish/')
+        component: () => import('@/view/article-publish/')
       }
     ],
   },
@@ -131,6 +131,15 @@ export default [
           icon: 'md-photos',
         },
         component: () => import('@/view/albums/')
+      },
+      {
+        path: '/album-publish',
+        name:'album-publish',
+        meta: {
+          title: '发布文章',
+          hideInMenu: true,
+        },
+        component: () => import('@/view/album-publish/')
       }
     ],
   },

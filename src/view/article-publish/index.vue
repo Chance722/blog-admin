@@ -1,5 +1,5 @@
 <template>
-  <div class="articles-publish">
+  <div class="article-publish">
     <div class="left-view">
       <main-panel />
     </div>

@@ -1,18 +1,13 @@
 const fs = require('fs')
 const path = require('path')
 const rimraf = require('rimraf')
-const cheerio = require('cheerio')
 const cssPath = path.resolve(__dirname, './src/assets/icons/iconfont.css')
-const htmlPath = path.resolve(__dirname, './src/assets/icons/demo_index.html')
 const jsonPath = path.resolve(__dirname, './public/iconfont.json')
 
 let cssFile = null
-let htmlFile = null
-let $ = null
+
 try {
   cssFile = fs.readFileSync(cssPath, 'utf-8')
-  htmlFile = fs.readFileSync(htmlPath, 'utf-8')
-  $ = cheerio.load(htmlFile, { decodeEntities: false })
 } catch (e) {
   console.log(e)
 }
@@ -31,9 +26,7 @@ const getIconClasses = listenPath => {
   const iconArray = getIconArray(fileStr).map(item => item.replace('.', '').replace(':before', ''))
   let iconMap = {}
   iconArray.forEach(item => {
-    const $fontcls = $('.tab-container').find('.content.font-class')
-    const nameTxt = $fontcls.find(`.iconfont.${item}`).parents('li').find('.name').html()
-    iconMap[item] = nameTxt.replace(/[\r\n]/g,"").trim()
+    iconMap[item] = item.replace('icon-', '')
   })
 
   rimraf(jsonPath, err => {
