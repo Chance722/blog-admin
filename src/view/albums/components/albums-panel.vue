@@ -48,7 +48,7 @@
 				</Row>
 			</Form>
 		</Card>
-		<router-link :to="'/photo-upload'">
+		<router-link :to="'/album-publish'">
 			<Button size="large" icon="md-cloud-upload" type="primary" :class="'publish-btn'">上传相片</Button>
 		</router-link>
 	</section>
