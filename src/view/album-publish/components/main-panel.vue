@@ -32,6 +32,24 @@
             </swiper>
           </div>
         </Card>
+
+        <div class="form-container">
+          <Form :model="formModel" :label-width="80">
+            <FormItem label="相片标题">
+              <Input v-model="formModel.title" clearable></Input>
+            </FormItem>
+            <FormItem label="相片描述">
+              <Input v-model="formModel.desc" :rows="4" type="textarea"></Input>
+            </FormItem>
+            <FormItem label="相片标签">
+              <Select v-model="formModel.tag" multiple>
+                <OptionGroup v-for="(tagItem, tagIndex) in tagList" :label="tagItem.category" :key="'tag_item_' + tagIndex">
+                    <Option v-for="item in tagItem.list" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </OptionGroup>
+              </Select>
+            </FormItem>
+          </Form>
+        </div>
       </div>
     </Card>
   </section>
@@ -48,12 +66,49 @@ export default {
   },
   data () {
     return {
+      formModel: {
+        title: '',
+        desc: '',
+        tag: '',
+      },
+      tagList: [
+        {
+          category: '工作',
+          list: [
+            {
+              value: 1,
+              label: 'yy',
+            },
+            {
+              value: 2,
+              label: 'gomo',
+            }
+          ],
+        },
+        {
+          category: '生活',
+          list: [
+            {
+              value: 3,
+              label: '搞笑',
+            },
+            {
+              value: 4,
+              label: '装逼',
+            },
+            {
+              value: 5,
+              label: '回忆',
+            }
+          ],
+        }
+      ],
       swiperOptionTop: {
         spaceBetween: 10,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
-        }
+        },
       },
       swiperOptionThumbs: {
         spaceBetween: 10,
@@ -76,13 +131,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.photos-container {
+  display: flex;
+}
 .upload-container {
   padding-left: 10px;
 }
 .swiper-container {
   width: 600px;
   height: 500px;
-  margin: 0 auto;
+  // margin: 0 auto;
 
   .slide {
     background-image: url('~@/assets/images/default-cover.png');
@@ -111,5 +169,9 @@ export default {
     opacity: 1;
   }
 
+}
+.form-container {
+  margin: 20px 50px;
+  width: 400px;
 }
 </style>
