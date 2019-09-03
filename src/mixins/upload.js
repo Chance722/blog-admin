@@ -8,7 +8,7 @@ export default {
       percent: 0,
       qiniu: {
         token: '',
-        key: '',
+        // key: '',
       },
       fileNames: [],
     }
@@ -30,7 +30,7 @@ export default {
         fileName = fileName.substring(0, 10)
       }
       fileName = fileName.replace(/.png|.jpg|.jpeg/, '') + new Date().getTime()
-      this.qiniu.key = isJPG ? fileName + '.jpg' : fileName + '.png'
+      // this.qiniu.key = isJPG ? fileName + '.jpg' : fileName + '.png'
       this.fileNames.push(isJPG ? fileName + '.jpg' : fileName + '.png')
       const isJPNG = isJPG || isPNG
       const isLt10M = file.size / 1024 / 1024 < 10
@@ -54,7 +54,10 @@ export default {
       this.percent = Math.floor(e.percent)
     },
     handleSuccess (res, file) {
-      if (file && file.status === 'finished') this.imageUrls.push(config.qiniuDomain + this.qiniu.key)
+      if (file && file.status === 'finished') {
+        this.imageUrls.push(config.qiniuDomain + res.key)
+        console.log(this.imageUrls)
+      }
     },
     async getUploadToken () {
       if (this.uploadToken) {
