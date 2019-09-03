@@ -38,6 +38,7 @@ module.exports = {
     plugins: [
       new webpack.ProvidePlugin({
         $api: [path.resolve(__dirname, `./src/api/index.js`), 'default', ],
+        $config: [path.resolve(__dirname, `/src/config/index.js`), 'default'],
       }),
       new WebpackChokidarPlugin({
         watchFilePaths: [

@@ -33,6 +33,7 @@ export default {
     local: localRead('local'),
     errorList: [],
     hasReadErrorPage: false,
+    uploadToken: '',
   },
   getters: {
     menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access),
@@ -90,6 +91,9 @@ export default {
     },
     setHasReadErrorLoggerStatus (state, status = true) {
       state.hasReadErrorPage = status
+    },
+    setUploadToken (state, token) {
+      state.uploadToken = token
     },
   },
   actions: {

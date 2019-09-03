@@ -70,8 +70,20 @@ export default {
       },
     }
   },
-  mounted () {
-    //
+  created () {
+    this.init()
+  },
+  methods: {
+    init () {
+      this.getUploadToken()
+    },
+    /**
+     * @description 获取七牛 uploadToken
+     */
+    async getUploadToken () {
+      const res = await $api.getToken()
+      if (res.code === 200 && res.success) this.$store.commit('setUploadToken', res.data.token)
+    },
   },
 }
 </script>

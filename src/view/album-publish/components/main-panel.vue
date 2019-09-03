@@ -5,7 +5,10 @@
         <Upload
             multiple
             :show-upload-list="false"
-            action="//jsonplaceholder.typicode.com/posts/">
+            :before-upload="beforeUpload"
+            :on-success="handleSuccess"
+            :data="qiniu"
+            action="https://upload.qiniup.com/">
             <Button> <Icon type="ios-cloud-upload-outline" size="20" /><span class="inline-middle ml5">选择相片</span></Button>
         </Upload>
       </div>
@@ -14,21 +17,17 @@
         <Card>
           <div class="swiper-container">
             <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
-              <swiper-slide class="slide"></swiper-slide>
-              <swiper-slide class="slide"></swiper-slide>
-              <swiper-slide class="slide"></swiper-slide>
-              <swiper-slide class="slide"></swiper-slide>
-              <swiper-slide class="slide"></swiper-slide>
+              <template v-for="(item, index) in imageUrls">
+                <swiper-slide :key="'slide-top-' + index" :style="{'background-image': 'url('+ item +')'}" class="slide"></swiper-slide>
+              </template>
               <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
               <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
             </swiper>
             <!-- swiper2 Thumbs -->
             <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
-              <swiper-slide class="slide"></swiper-slide>
-              <swiper-slide class="slide"></swiper-slide>
-              <swiper-slide class="slide"></swiper-slide>
-              <swiper-slide class="slide"></swiper-slide>
-              <swiper-slide class="slide"></swiper-slide>
+              <template v-for="(item, index) in imageUrls">
+                <swiper-slide :key="'slide-thumb-' + index" :style="{'background-image': 'url('+ item +')'}" class="slide"></swiper-slide>
+              </template>
             </swiper>
           </div>
         </Card>
@@ -58,12 +57,16 @@
 <script>
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import upload from '@/mixins/upload'
 
 export default {
   components: {
     swiper,
     swiperSlide,
   },
+  mixins: [
+    upload,
+  ],
   data () {
     return {
       formModel: {
@@ -143,7 +146,7 @@ export default {
   // margin: 0 auto;
 
   .slide {
-    background-image: url('~@/assets/images/default-cover.png');
+    // background-image: url('~@/assets/images/default-cover.png');
     background-position: center;
     background-size: cover;
   }

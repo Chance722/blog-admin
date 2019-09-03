@@ -6,7 +6,7 @@ export default {
   /**
    * @description 七牛域名
    */
-  qiniuDomain: `${location.protocol}//plh0ed9u2.bkt.clouddn.com/`,
+  qiniuDomain: `${location.protocol}//px90k98ve.bkt.clouddn.com/`,
   /**
    * @description token过期 字段名称
    */
