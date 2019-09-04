@@ -2,15 +2,23 @@
   <section class="main-panel">
     <Card dis-hover>
       <div class="upload-container">
-        <Upload
-            multiple
-            :show-upload-list="false"
-            :before-upload="beforeUpload"
-            :on-success="handleSuccess"
-            :data="qiniu"
-            action="https://upload.qiniup.com/">
-            <Button> <Icon type="ios-cloud-upload-outline" size="20" /><span class="inline-middle ml5">选择相片</span></Button>
-        </Upload>
+        <div class="inline-middle">
+          <Upload
+              multiple
+              :show-upload-list="false"
+              :before-upload="beforeUpload"
+              :on-success="handleSuccess"
+              :data="qiniu"
+              action="https://upload.qiniup.com/">
+              <Button> <Icon type="ios-cloud-upload-outline" size="20" /><span class="inline-middle ml5">选择相片</span></Button>
+          </Upload>
+        </div>
+        <div class="flex-center ml10">
+          <Button>
+            <Icon type="ios-undo-outline" :size="16" />
+            <span class="inline-middle ml5">重置</span>
+          </Button>
+        </div>
       </div>
       <Divider />
       <transition name="slide-fade" mode="in-out">
@@ -19,7 +27,9 @@
             <div class="swiper-container">
               <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
                 <template v-for="(item, index) in imageUrls">
-                  <swiper-slide :key="'slide-top-' + index" :style="{'background-image': 'url('+ item +')'}" class="slide"></swiper-slide>
+                  <swiper-slide :key="'slide-top-' + index" :style="{'background-image': 'url('+ item +')'}" class="slide slide-top">
+                    <span class="slide-top-idx">{{ `p${index + 1}` }}</span>
+                  </swiper-slide>
                 </template>
                 <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
                 <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
@@ -27,7 +37,12 @@
               <!-- swiper2 Thumbs -->
               <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
                 <template v-for="(item, index) in imageUrls">
-                  <swiper-slide :key="'slide-thumb-' + index" :style="{'background-image': 'url('+ item +')'}" class="slide"></swiper-slide>
+                  <swiper-slide :key="'slide-thumb-' + index" :style="{'background-image': 'url('+ item +')'}" class="slide slide-bottom">
+                    <!-- <div class="slide-bottom-check"> 
+                      <span class="icon-bg" />
+                      <Icon type="md-checkmark-circle" />
+                    </div> -->
+                  </swiper-slide>
                 </template>
               </swiper>
             </div>
@@ -35,7 +50,7 @@
           <div class="form-container">
             <Tabs :value="currentTab" @on-click="handleTabClick">
               <template v-for="(item, index) in imageUrls">
-                <TabPane :label="`图${index + 1}`"  :name="index">
+                <TabPane :label="`p${index + 1}`"  :name="index">
                   <Form :model="formModel" :label-width="80">
                     <FormItem label="相片标题">
                       <Input v-model="formModel[index].title" clearable></Input>
@@ -50,18 +65,24 @@
                         </OptionGroup>
                       </Select>
                     </FormItem>
+                    <FormItem label="操作">
+                      <Button @click="delphoto(index)">
+                        <Icon type="ios-trash-outline" :size="16" />
+                        <span class="inline-middle ml5">删除</span>
+                      </Button>
+                    </FormItem>
                   </Form>
                 </TabPane>
               </template>
             </Tabs>
           </div>
         </div>
-      </transition>
-      <div v-show="!imageUrls.length">
-        <div class="empty-bg" :style="{'background-image': 'url('+ emptyBgImg +')'}">
-          <p>Nothing here...</p>
+        <div v-show="!imageUrls.length">
+          <div class="empty-bg" :style="{'background-image': 'url('+ emptyBgImg +')'}">
+            <p>Nothing here...</p>
+          </div>
         </div>
-      </div>
+      </transition>
     </Card>
   </section>
 </template>
@@ -131,6 +152,7 @@ export default {
         slideToClickedSlide: true,
       },
       currentTab: 0,
+      isSelectAll: true,
     }
   },
   computed: {
@@ -167,6 +189,9 @@ export default {
       this.swiper1.slideTo(name, 500, false)
       this.swiper2.slideTo(name, 500, false)
     },
+    delphoto (index) {
+      this.imageUrls.splice(index, 1)
+    },
   },
 }
 </script>
@@ -177,16 +202,65 @@ export default {
 }
 .upload-container {
   padding-left: 10px;
+  display: flex;
 }
 .swiper-container {
   width: 600px;
   height: 500px;
-  // margin: 0 auto;
 
   .slide {
-    // background-image: url('~@/assets/images/default-cover.png');
     background-position: center;
     background-size: cover;
+    position: relative;
+  }
+
+  .slide-top {
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: inline-block;
+      border-top: 50px solid #2d8cf0;
+      border-left: 50px solid transparent;
+      z-index: 99;
+    }
+
+    &-idx {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: #fff;
+      font-weight: bold;
+      z-index: 100;
+    }
+  }
+
+  .slide-bottom .slide-bottom-check{
+    display: none;
+  }
+
+  .swiper-slide-active .slide-bottom-check{
+    display: block;
+  }
+
+  .slide-bottom-check .icon-bg {
+    width: 10px;
+    height: 10px;
+    display: block;
+    background-color: #fff;
+    right: 9px;
+    bottom: 9px;
+    position: absolute;
+  }
+
+  .slide-bottom-check .ivu-icon {
+    display: block;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    font-size: 18px;
+    color: #0aff0a;
   }
 
   .gallery-top {
@@ -213,7 +287,7 @@ export default {
 }
 .form-container {
   margin: 20px 50px;
-  width: 600px;
+  width: 550px;
 
   .ivu-tabs {
     height: 100%;
