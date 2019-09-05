@@ -14,75 +14,75 @@
           </Upload>
         </div>
         <div class="flex-center ml10">
-          <Button>
-            <Icon type="ios-undo-outline" :size="16" />
+          <Button @click="imageUrls = []">
+            <Icon type="ios-refresh-circle-outline" :size="16" />
             <span class="inline-middle ml5">重置</span>
           </Button>
         </div>
       </div>
-      <Divider />
-      <transition name="slide-fade" mode="in-out">
-        <div v-show="imageUrls.length" class="photos-container">
-          <Card>
-            <div class="swiper-container">
-              <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
+      <Divider />  
+      <div class="panel-wrapper">
+        <transition name="slide-fade" mode="in-out">
+          <div v-show="imageUrls.length" class="photos-container">
+            <Card>
+              <div class="swiper-container">
+                <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
+                  <template v-for="(item, index) in imageUrls">
+                    <swiper-slide :key="'slide-top-' + index" :style="{'background-image': 'url('+ item +')'}" class="slide slide-top">
+                      <span class="slide-top-idx">{{ `p${index + 1}` }}</span>
+                    </swiper-slide>
+                  </template>
+                  <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+                  <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+                </swiper>
+                <!-- swiper2 Thumbs -->
+                <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
+                  <template v-for="(item, index) in imageUrls">
+                    <swiper-slide :key="'slide-thumb-' + index" :style="{'background-image': 'url('+ item +')'}" class="slide slide-bottom">
+                      <!-- <div class="slide-bottom-check"> 
+                        <span class="icon-bg" />
+                        <Icon type="md-checkmark-circle" />
+                      </div> -->
+                    </swiper-slide>
+                  </template>
+                </swiper>
+              </div>
+            </Card>
+            <div class="form-container">
+              <Tabs :value="currentTab" @on-click="handleTabClick">
                 <template v-for="(item, index) in imageUrls">
-                  <swiper-slide :key="'slide-top-' + index" :style="{'background-image': 'url('+ item +')'}" class="slide slide-top">
-                    <span class="slide-top-idx">{{ `p${index + 1}` }}</span>
-                  </swiper-slide>
+                  <TabPane :label="`p${index + 1}`"  :name="index">
+                    <Form :model="formModel" :label-width="80">
+                      <FormItem label="相片标题">
+                        <Input v-model="formModel[index].title" clearable></Input>
+                      </FormItem>
+                      <FormItem label="相片描述">
+                        <Input v-model="formModel[index].desc" :rows="4" type="textarea"></Input>
+                      </FormItem>
+                      <FormItem label="相片标签">
+                        <Select v-model="formModel[index].tag" multiple>
+                          <OptionGroup v-for="(tagItem, tagIndex) in tagList" :label="tagItem.category" :key="'tag_item_' + tagIndex">
+                              <Option v-for="item in tagItem.list" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                          </OptionGroup>
+                        </Select>
+                      </FormItem>
+                      <FormItem label="操作">
+                        <Button @click="delphoto(index)">
+                          <Icon type="ios-trash-outline" :size="16" />
+                          <span class="inline-middle ml5">删除</span>
+                        </Button>
+                      </FormItem>
+                    </Form>
+                  </TabPane>
                 </template>
-                <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
-                <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
-              </swiper>
-              <!-- swiper2 Thumbs -->
-              <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
-                <template v-for="(item, index) in imageUrls">
-                  <swiper-slide :key="'slide-thumb-' + index" :style="{'background-image': 'url('+ item +')'}" class="slide slide-bottom">
-                    <!-- <div class="slide-bottom-check"> 
-                      <span class="icon-bg" />
-                      <Icon type="md-checkmark-circle" />
-                    </div> -->
-                  </swiper-slide>
-                </template>
-              </swiper>
+              </Tabs>
             </div>
-          </Card>
-          <div class="form-container">
-            <Tabs :value="currentTab" @on-click="handleTabClick">
-              <template v-for="(item, index) in imageUrls">
-                <TabPane :label="`p${index + 1}`"  :name="index">
-                  <Form :model="formModel" :label-width="80">
-                    <FormItem label="相片标题">
-                      <Input v-model="formModel[index].title" clearable></Input>
-                    </FormItem>
-                    <FormItem label="相片描述">
-                      <Input v-model="formModel[index].desc" :rows="4" type="textarea"></Input>
-                    </FormItem>
-                    <FormItem label="相片标签">
-                      <Select v-model="formModel[index].tag" multiple>
-                        <OptionGroup v-for="(tagItem, tagIndex) in tagList" :label="tagItem.category" :key="'tag_item_' + tagIndex">
-                            <Option v-for="item in tagItem.list" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                        </OptionGroup>
-                      </Select>
-                    </FormItem>
-                    <FormItem label="操作">
-                      <Button @click="delphoto(index)">
-                        <Icon type="ios-trash-outline" :size="16" />
-                        <span class="inline-middle ml5">删除</span>
-                      </Button>
-                    </FormItem>
-                  </Form>
-                </TabPane>
-              </template>
-            </Tabs>
           </div>
+        </transition>
+        <div v-show="!imageUrls.length" class="empty-bg" :style="{'background-image': 'url('+ emptyBgImg +')'}">
+          <p>Nothing here...</p>
         </div>
-        <div v-show="!imageUrls.length">
-          <div class="empty-bg" :style="{'background-image': 'url('+ emptyBgImg +')'}">
-            <p>Nothing here...</p>
-          </div>
-        </div>
-      </transition>
+      </div>
     </Card>
   </section>
 </template>
@@ -197,11 +197,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.photos-container {
-  display: flex;
-}
 .upload-container {
   padding-left: 10px;
+  display: flex;
+}
+.panel-wrapper {
+  position: relative;
+  min-width: 1000px;
+  height: 68vh;
+
+  .photos-container, .empty-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+}
+.photos-container {
   display: flex;
 }
 .swiper-container {
@@ -294,9 +307,6 @@ export default {
   }
 }
 .empty-bg {
-  min-width: 1000px;
-  width: 100%;
-  height: 68vh;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -319,7 +329,7 @@ export default {
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: translateX(10px);
+  transform: translateX(50px);
   opacity: 0;
 }
 </style>

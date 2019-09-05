@@ -20,8 +20,12 @@
       <Divider />
       <div class="btns">
         <Button type="primary">
-          <Icon type="md-checkmark-circle" :size="12" />
+          <Icon type="md-checkmark-circle-outline" :size="12" />
           <span class="inline-middle ml5">一键发布</span>
+        </Button>
+        <Button @click="back">
+          <Icon type="ios-undo-outline" :size="12" />
+          <span class="inline-middle ml5">返回</span>
         </Button>
       </div>
     </Card>
@@ -46,6 +50,9 @@ export default {
     closeKeyword (e, name) {
       const index = this.formModel.keywords.indexOf(name)
       this.formModel.keywords.splice(index, 1)
+    },
+    back () {
+      this.$router.back(-1)
     },
   },
 }
