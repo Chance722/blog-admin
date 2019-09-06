@@ -1,8 +1,8 @@
 <template>
   <div class="comments-list">
-     <Alert show-icon>找到<span class="num-orange">18</span>条留言，共<span class="num-orange">2</span>页</Alert>
+    <Alert show-icon>找到<span class="num-orange">18</span>条留言，共<span class="num-orange">2</span>页</Alert>
     <Card>
-      <Table :data="listData" :columns="expandData">
+      <Table :data="listData" :columns="columnData">
         <template slot-scope="{ row, index }" slot="action">
           <Button type="success">
             <Icon type="md-checkmark-circle-outline" :size="12" />
@@ -31,7 +31,7 @@ export default {
   },
   data () {
     return {
-      expandData: [
+      columnData: [
         {
           type: 'expand',
           width: 50,

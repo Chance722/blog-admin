@@ -164,20 +164,20 @@ export default [
   },
   {
     path: '',
-    name: 'musics',
+    name: 'users',
     meta: {
       hideInBread: true,
     },
     component: Main,
     children: [
       {
-        path: '/muscis',
-        name:'musics-page',
+        path: '/users',
+        name:'users-page',
         meta: {
-          title: '音乐管理',
-          icon: 'ios-musical-notes',
+          title: '用户管理',
+          icon: 'md-person',
         },
-        component: () => import('@/view/musics/')
+        component: () => import('@/view/users/')
       }
     ],
   },
