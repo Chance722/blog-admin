@@ -1,4 +1,7 @@
 // 常见宽度设置
+.w400 {
+    width: 400px;
+}
 .w300 {
     width: 300px;
 }
@@ -64,4 +67,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.pointer {
+    cursor: pointer;
 }

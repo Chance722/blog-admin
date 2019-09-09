@@ -11,18 +11,25 @@
     <Row :gutter="20" style="margin-top: 10px;">
       <i-col :md="24" :lg="8" style="margin-bottom: 20px;">
         <Card shadow>
-          <chart-pie style="height: 300px;" :value="pieData" text="用户访问来源"></chart-pie>
+          <chart-pie style="height: 280px;" :value="pieData" text="用户访问来源"></chart-pie>
         </Card>
       </i-col>
       <i-col :md="24" :lg="16" style="margin-bottom: 20px;">
         <Card shadow>
-          <chart-bar style="height: 300px;" :value="barData" text="每周用户活跃量"/>
+          <chart-bar style="height: 280px;" :value="barData" text="每周用户活跃量"/>
         </Card>
       </i-col>
     </Row>
     <Row>
       <Card shadow>
-        <example style="height: 310px;"/>
+        <div style="text-align: right;">
+          <RadioGroup v-model="status" type="button">
+            <Radio :label="0">最近一周</Radio>
+            <Radio :label="1">最近一月</Radio>
+            <Radio :label="2">最近半年</Radio>
+          </RadioGroup>
+        </div>
+        <example style="height: 280px;"/>
       </Card>
     </Row>
   </div>
@@ -44,13 +51,14 @@ export default {
   },
   data () {
     return {
+      status: 0,
       inforCardData: [
         { title: '新增用户', icon: 'md-person-add', count: 803, color: '#2d8cf0', },
-        { title: '累计点击', icon: 'md-locate', count: 232, color: '#19be6b', },
-        { title: '新增问答', icon: 'md-help-circle', count: 142, color: '#ff9900', },
-        { title: '分享统计', icon: 'md-share', count: 657, color: '#ed3f14', },
-        { title: '新增互动', icon: 'md-chatbubbles', count: 12, color: '#E46CBB', },
-        { title: '新增页面', icon: 'md-map', count: 14, color: '#9A66E4', },
+        { title: '累计访问', icon: 'md-locate', count: 232, color: '#19be6b', },
+        { title: '新增评论', icon: 'md-text', count: 142, color: '#ff9900', },
+        { title: '留言统计', icon: 'md-stats', count: 657, color: '#ed3f14', },
+        { title: '新增点赞', icon: 'md-thumbs-up', count: 12, color: '#E46CBB', },
+        { title: '文章浏览', icon: 'md-eye', count: 14, color: '#9A66E4', },
       ],
       pieData: [
         { value: 335, name: '直接访问', },

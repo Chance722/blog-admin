@@ -13,18 +13,23 @@
       </div>
       <div class="setting-row">
         <p class="user-name">
-          <span class="mr20 inline-middle">{{ name }}</span>
-          <Icon type="ios-create-outline" class="inline-middle" />
+          <template v-if="currentEdit === 'name'">
+            <Input v-model="name" class="w200" @on-blur="blurHandler"></Input>
+          </template>
+          <template v-else>
+            <span class="mr20 inline-middle">{{ name }}</span>
+            <Icon type="ios-create-outline" class="inline-middle pointer" @click="currentEdit = 'name'" />
+          </template>
         </p>
       </div>
       <div class="setting-row">
         <p class="user-signature">
           <span class="mr20 inline-middle">{{ signature }}</span>
-          <Icon type="ios-create-outline" class="inline-middle" />
+          <Icon :size="20" type="ios-create-outline" class="inline-middle pointer" />
         </p>
       </div>
     </section>
-    <section class="user-setting-middle">
+    <section class="user-setting-bottom">
       <div class="setting-row">
         <p class="user-description">
           <Icon
@@ -62,6 +67,28 @@
           <Button icon="ios-add" type="dashed" size="small" @click="handleAdd">添加爱好</Button>
         </p>
       </div>
+      <div class="setting-row">
+        <p class="user-address">
+          <Icon
+            type="ios-navigate"
+            :size="22"
+            color="#f90"
+            class="mr20" />
+          <span class="mr20 inline-middle">{{ address }}</span>
+          <Icon :size="20" type="ios-create-outline" class="inline-middle pointer" />
+        </p>
+      </div>
+      <div class="setting-row">
+        <p class="user-company">
+          <Icon
+            type="md-contacts"
+            :size="22"
+            color="#515a6e"
+            class="mr20" />
+          <span class="mr20 inline-middle">{{ company }}</span>
+          <Icon :size="20" type="ios-create-outline" class="inline-middle pointer" />
+        </p>
+      </div>
     </section>
   </div>
 </template>
@@ -71,15 +98,27 @@ export default {
   data () {
     return {
       name: 'Chance722',
-      signature: 'Nothing is impossible.'
+      signature: 'Nothing is impossible.',
+      address: '广东广州 番禺区',
+      company: 'YY Inc',
+      currentEdit: '',
     }
-  }
+  },
+  methods: {
+    blurHandler (name) {
+      this.currentEdit = ''
+      console.log(this.$refs)
+      // this.$nextTick(() => {
+      //   this.$refs[name].focus()
+      // })
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .user-setting {
-  // text-align: center;
+  padding-top: 20px;
 
   .setting-row {
     margin: 0 auto;
@@ -110,10 +149,10 @@ export default {
     }
   }
 
-  &-middle {
+  &-bottom {
     .user-description {
       color: #2b2b2b;
-      font-size: 12px;
+      font-size: 14px;
       display: flex;
     }
   }
