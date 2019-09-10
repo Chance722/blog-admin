@@ -11,7 +11,7 @@
         <Input type="password" v-model="formModel.oldpwd" class="w300"></Input>
       </FormItem>
       <FormItem>
-        <Button type="primary" class="w100">保存</Button>
+        <Button type="primary" class="w100 ml5">保存</Button>
       </FormItem>
     </Form>
   </div>
