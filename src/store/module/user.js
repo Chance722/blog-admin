@@ -13,6 +13,7 @@ export default {
     },
     setUserData (state, data) {
       state.userData = data
+      console.log('setUserData: ', data)
       if (data) {
         setItem(config.blogAdminAccessToken, data.token || '')
         setItem(config.blogAdminData, JSON.stringify(data))

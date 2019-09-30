@@ -109,7 +109,7 @@
             color="#f90"
             class="mr20" />
           <template v-if="currentEdit === 'addressInput'">
-            <Input ref="addressInput" v-model="address" class="w200" @on-blur="blurHandler"></Input>
+            <Input ref="addressInput" v-model="address" class="w200" @on-blur="blurHandler({ address })"></Input>
           </template>
           <template v-else>
             <span class="mr20 inline-middle">{{ address }}</span>
@@ -125,7 +125,7 @@
             color="#515a6e"
             class="mr20" />
           <template v-if="currentEdit === 'companyInput'">
-            <Input ref="companyInput" v-model="company" class="w200" @on-blur="blurHandler"></Input>
+            <Input ref="companyInput" v-model="company" class="w200" @on-blur="blurHandler({ company })"></Input>
           </template>
           <template v-else>
             <span class="mr20 inline-middle">{{ company }}</span>
@@ -142,19 +142,25 @@ import upload from '@/mixins/upload'
 import config from '@/config'
 
 export default {
+  props: {
+    settingInfo: {
+      type: Object,
+      default: () => {},
+    },
+  },
   mixins: [
     upload,
   ],
   data () {
     return {
       uploadList: [],
-      name: 'Chance722',
-      signature: 'Nothing is impossible.',
-      description: '2019 的对于 5G 的讨论比以往来得更猛一些，从中美贸易战再到华为被美国列入实体黑名单，5G 的话题更多走进了我们的生活，5G 时代的渐渐到来可以带来很多方面的变化，上网速度加快是其中一个表现。',
-      skills: ['Vuejs', 'Nodejs', 'Angular', 'React', 'Flutter'],
-      hobies: ['搬砖', 'K歌', '逆天邪神' , 'lol'],
-      address: '广东广州 番禺区',
-      company: 'YY Inc',
+      name: this.settingInfo.name || 'YOUR NAME',
+      signature: this.settingInfo.signature || 'YOUR SIGNATURE',
+      description: this.settingInfo.self_description || 'YOUR DESCRIPTION',
+      skills: this.settingInfo.skills ? this.settingInfo.skills.split(',') : [],
+      hobies: this.settingInfo.hobies ? this.settingInfo.hobies.split(',') : [],
+      address: this.settingInfo.address || 'YOUR ADDRESS',
+      company: this.settingInfo.company || 'YOUR COMPANY',
       currentEdit: '',
       addhoby: '',
       addskill: '',
@@ -164,8 +170,13 @@ export default {
     this.uploadList = this.$refs.upload.fileList
   },
   methods: {
-    blurHandler () {      
+    blurHandler (params) {      
       this.currentEdit = ''
+      this.autoSave(params)
+    },
+    async autoSave (params) {
+      const res = await $api.updateInfo(params)
+      console.log('updateInfo: ', res)
     },
     editHandler (name) {
       this.currentEdit = name

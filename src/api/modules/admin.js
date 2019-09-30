@@ -29,8 +29,8 @@ export default {
    * @param {string} oldPwd 旧密码
    * @param {string} pwd 确认密码
    */
-  saveUserPwd ({ newPwd, oldPwd, pwd, }) {
-    return axios.post('/api/admin/saveUserPwd', {
+  savePwd ({ newPwd, oldPwd, pwd, }) {
+    return axios.post('/api/admin/savePwd', {
       new_pwd: newPwd,
       old_pwd: oldPwd,
       pwd,
@@ -38,28 +38,15 @@ export default {
   },
   /**
    * @description 保存站点基本信息
-   * @param {string} blogTitle 博客标题
-   * @param {string} pageTitle 页面标题
-   * @param {string} keywords 关键字
-   * @param {string} blogAddress 博客地址
-   * @param {string} blogDesc 博客描述
-   * @param {string} email 邮箱
-   * @param {string} icpNumbers 备案号
+   * @param {object} params 任意保存入参
    */
-  saveBaseInfo ({ blogTitle, pageTitle, keywords, blogAddress, blogDesc, email, icpNumbers, }) {
-    return axios.post('/api/admin/saveBaseInfo', {
-      blog_title: blogTitle,
-      page_title: pageTitle,
-      keywords,
-      blog_address: blogAddress,
-      blog_desc: blogDesc,
-      email,
-      icp_numbers: icpNumbers, })
+  updateInfo (params) {
+    return axios.post('/api/admin/updateInfo', params)
   },
   /**
    * @description 获取设置信息
    */
-  getSettingInfo () {
-    return axios.get('/api/admin/getSettingInfo')
+  getInfo () {
+    return axios.get('/api/admin/getInfo')
   },
 }

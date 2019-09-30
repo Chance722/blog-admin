@@ -10,11 +10,12 @@ axios.defaults.baseURL = Object.is(process.env, 'production') ? config.baseUrl.p
 
 // 请求拦截器
 axios.interceptors.request.use(
-  config => {
+  reqConfig => {
     // 设置 30s 超时
-    if (!config.timeout) config.timeout = 30000
-    config.headers.Authorization = getItem(config.blogAdminAccessToken)
-    return config
+    if (!reqConfig.timeout) reqConfig.timeout = 30000
+
+    reqConfig.headers.Authorization = getItem(config.blogAdminAccessToken)
+    return reqConfig
   },
   err => {
     Message.error(err.message)
@@ -29,7 +30,7 @@ axios.interceptors.response.use(
     return res
   },
   err => {
-    Message.error(err.message)
+    Message.error(err.response.data.message)
     console.log(err.response)
     let code = err.response && err.response.data.code
     if (code === 401) {

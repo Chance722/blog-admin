@@ -3,10 +3,10 @@
     <Card>
       <Tabs>
         <TabPane label="用户设置" icon="ios-person">
-          <userSetting />
+          <userSetting :settingInfo="settingInfo" />
         </TabPane>
         <TabPane label="站点设置" icon="ios-globe">
-          <blogSetting />
+          <blogSetting :settingInfo="settingInfo" />
         </TabPane>
         <TabPane label="修改密码" icon="ios-key">
           <pwdSetting />
@@ -28,8 +28,21 @@ export default {
 	},
 	data () {
 		return {
+      settingInfo: {},
 		}
-	},
+  },
+  created () {
+    this.init()
+  },
+  methods: {
+    init () {
+      this.initSettingInfo()
+    },
+    async initSettingInfo () {
+      const res = await $api.getInfo()
+      if (res.code === 200) this.settingInfo = res.data
+    },
+  },
 }
 </script>
 

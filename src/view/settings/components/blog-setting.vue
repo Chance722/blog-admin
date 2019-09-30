@@ -28,15 +28,21 @@
 
 <script>
 export default {
+  props: {
+    settingInfo: {
+      type: Object,
+      default: () => {},
+    },
+  },
   data () {
     return {
       keywords: '',
       formModel: {
-        name: 'Chance722.me',
-        description: 'My personal blog.',
-        keywords: ['关键字1', '关键字2'],
-        email: 'handsomelong722@163.com',
-        icp: '粤ICP备17040457号',
+        name: this.settingInfo.blog_title || 'YOUR BLOG TITLE',
+        description: this.settingInfo.blog_description || 'YOUR BLOG DESCRIPTION',
+        keywords: this.settingInfo.blog_keywords ? this.settingInfo.blog_keywords.split(',') : [],
+        email: this.settingInfo.email || '',
+        icp: this.settingInfo.icp_numbers || '',
       },
     }
   },
